@@ -1,0 +1,24 @@
+*------------------------------------------*
+	Vim assembly by Sfate
+*------------------------------------------*
+Plugins:
+[*]NERDTree
+[*]Tcomment
+[*]Rails
+[*]RailsIndent
+[*]snipMate
+*------------------------------------------*
+ColorSchemes:
+[*]molokai    	<- in use
+[*]Mustang
+[*]twilight
+[*]vibrantink
+*------------------------------------------*
+Few hacks in .vimrc:
+[*]'Ctrl+Arrows' to resize splitted window
+[*]show line numbers
+[*]colors set to 256
+*------------------------------------------*
+	   That's all folks!
+*------------------------------------------*
+
