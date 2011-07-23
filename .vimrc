@@ -4,6 +4,8 @@ set t_Co=256
 colorscheme molokai
 let g:molokai_original = 1
 set number
+set tabstop=2
+set expandtab
 
 nmap <C-Left> <C-W><<C-W><
 nmap <C-Right> <C-W>><C-W>>
