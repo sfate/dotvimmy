@@ -1,1 +1,2 @@
 tcomment.vba: call delete('/home/sfate/.vim/doc/tcomment.txt')|call delete('/home/sfate/.vim/plugin/tcomment.vim')|call delete('/home/sfate/.vim/autoload/tcomment.vim')
+ruby-sinatra-0.2.0.vba: call delete('/home/sfate/.vim/ftdetect/ruby-sinatra.vim')|call delete('/home/sfate/.vim/snippets/ruby-sinatra.snippets')|call delete('/home/sfate/.vim/syntax/ruby-sinatra.vim')
