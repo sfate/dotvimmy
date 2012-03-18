@@ -1,0 +1,6 @@
+# all
+*
+# except
+!.vim
+!.vimrc
+!Readme.md
