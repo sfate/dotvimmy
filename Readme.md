@@ -43,7 +43,4 @@ Who's inside?
 -------------------------
 Version 1.4 (18 march 2012)
 -------------------------
-Tweet with Me
--------------------------
-[_sfate]: https://twitter.com/#!/_sfate
 
