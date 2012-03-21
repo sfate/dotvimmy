@@ -35,7 +35,8 @@ set nobackup
 set noswapfile
 
 " Enable filetype plugin
-filetype plugin indent on
+filetype plugin on
+filetype indent on
 
 " Enable paste mode for pasting from outside
 set pastetoggle=
@@ -100,9 +101,6 @@ else
   set t_Co=8
   colorscheme slate
 endif
-
-" Enable syntax
-syntax on
 
 " Source the vimrc file after saving it
 if has("autocmd")
