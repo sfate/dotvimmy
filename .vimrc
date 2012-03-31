@@ -4,7 +4,7 @@
 "    Site: http://evil4live.wordpress.com
 "    Mail: alexey.bobyrev@gmail.com
 "
-" Version: 1.4 - 18/03/12
+" Version: 1.5 - 31/03/12
 "
 " Syntax_highlighted:
 "    http://git.io/.vimrc
@@ -74,6 +74,9 @@ set shiftwidth=2
 set shiftround
 set expandtab
 
+" highligth current line
+set cursorline
+
 " Resize splited windows with Ctrl+arrows
 nmap <C-Left> <C-W><<C-W><
 nmap <C-Right> <C-W>><C-W>>
@@ -87,10 +90,11 @@ imap <F5> <ESC>
 imap <F6> <ESC>
 
 " Enable Obective-J files highlight
-augroup objective-j
-  au! BufRead,BufNewFile *.j set filetype=objective-j
-  au! Syntax objective-j source ~/.vim/syntax/objj.vim
-augroup END
+autocmd BufRead,BufNewFile *.j       set filetype=objective-j
+" Enable nginx conf's files highlight
+autocmd BufRead,BufNewFile */nginx/* set filetype=nginx
+" Enable Haskell files highlight
+autocmd BufEnter *.hsc               set filetype=haskell
 
 " Use colorshemes for tty and pty
 if $COLORTERM == "gnome-terminal" || $TERM == "xterm"
@@ -109,4 +113,26 @@ endif
 
 " Remove all trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Statusline setup
+set statusline=%f       "tail of the filename
+" RVM
+set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
+" Line of right setup
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+set laststatus=2
+" Turn off needless toolbar on gvim/mvim
+set guioptions-=T
+
+" Folding settings:
+  " zo[O] - open [all]fold[-s] under cursor
+  " zc[C] - close [all]fold[-s] under cursor
+  " zM - open all folds
+  " zR - close all folds
+set foldmethod=indent   "fold based on indent
+set foldnestmax=3       "deepest fold is 3 levels
+set nofoldenable        "dont fold by default
 

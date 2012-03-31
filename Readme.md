@@ -33,14 +33,15 @@ Who's inside?
 * fixed bug with pasting code with comments from outside
 * tab replaced with 2 spaces
 * disabled swap files write
-* added support of *Objective-J* syntax highligh
+* added support of *Objective-J*, *Haskell* and *Nginx conf files* syntax highligh
 * removing trailing whitespaces on file save
 * reload file on the fly
 * toggle zoom window by <*F5*> | <*F6*> buttons
 * <*ctrl*>+arrows to resize current window
 * support 8-color terminals
+* current line highlight
 
 -------------------------
-Version 1.4 (18 march 2012)
+Version 1.5 (31 march 2012)
 -------------------------
 
