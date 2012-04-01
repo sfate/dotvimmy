@@ -5,10 +5,10 @@ Inspired by love in *VIM* <3
 -------------------------
 Install
 -------------------------
-$ cd $HOME && git clone git@github.com:Sfate/Vim-environment.git .
+`$ cd $HOME && git clone git@github.com:Sfate/Vim-environment.git ./`
 Update
 -------------------------
-$ cd $HOME && git pull
+`$ cd $HOME && git pull`
 
 -------------------------
 Who's inside?
