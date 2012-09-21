@@ -4,7 +4,7 @@
 "    Site: http://evil4live.wordpress.com
 "    Mail: alexey.bobyrev@gmail.com
 "
-" Version: 1.5 - 31/03/12
+" Version: 1.6 - 21/09/12
 "
 " Syntax_highlighted:
 "    http://git.io/.vimrc
@@ -32,7 +32,11 @@ set history=700
 
 " Disable swap file / case they will bring only pain in your asshole
 set nobackup
+set nowritebackup
 set noswapfile
+
+" Are you sure?
+set confirm
 
 " Enable filetype plugin
 filetype plugin on
@@ -74,7 +78,7 @@ set shiftwidth=2
 set shiftround
 set expandtab
 
-" highligth current line
+" Highligth current line
 set cursorline
 
 " Resize splited windows with Ctrl+arrows
@@ -95,6 +99,10 @@ autocmd BufRead,BufNewFile *.j       set filetype=objective-j
 autocmd BufRead,BufNewFile */nginx/* set filetype=nginx
 " Enable Haskell files highlight
 autocmd BufEnter *.hsc               set filetype=haskell
+" Enable Gemfile highlight
+autocmd BufRead,BufNewFile Gemfile   set filetype=gemfile
+" Enable config.ru highlight
+autocmd BufRead,BufNewFile config.ru set filetype=ruby
 
 " Use colorshemes for tty and pty
 if $COLORTERM == "gnome-terminal" || $TERM == "xterm"
@@ -118,12 +126,15 @@ autocmd BufWritePre * :%s/\s\+$//e
 set statusline=%f       "tail of the filename
 " RVM
 set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
+
+set statusline +=%2*%m%*                "modified flag
 " Line of right setup
 set statusline+=%=      "left/right separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 set laststatus=2
+
 " Turn off needless toolbar on gvim/mvim
 set guioptions-=T
 
