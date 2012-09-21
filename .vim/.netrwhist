@@ -1,10 +1,1 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/sfate/.wine/drive_c/Games'
-let g:netrw_dirhist_2='/home/sfate/.moc'
-let g:netrw_dirhist_3='/home/sfate/prj/fire_in_the_hall/factorZ/app/controllers'
-let g:netrw_dirhist_4='/home/sfate/prj/temp/fix_clients_info/lib/fix_clients_info'
-let g:netrw_dirhist_5='/home/sfate/prj/scripts_test/smartdate'
-let g:netrw_dirhist_6='/home/sfate/prj/temp/fix_clients_info/lib/fix_clients_info'
-let g:netrw_dirhist_7='/home/sfate/.rvm/gems/ruby-1.8.7-head@artaffirm/gems/rails-3.0.3/lib'
-let g:netrw_dirhist_8='/home/sfate/.rvm/bin'

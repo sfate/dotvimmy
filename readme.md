@@ -33,7 +33,7 @@ Who's inside?
 * fixed bug with pasting code with comments from outside
 * tab replaced with 2 spaces
 * disabled swap files write
-* added support of *Objective-J*, *Haskell* and *Nginx conf files* syntax highligh
+* added support of *Objective-J*, *Haskell*, *C*, *Gemfile*, *Info* and *Nginx conf files* syntax highligh
 * removing trailing whitespaces on file save
 * reload file on the fly
 * toggle zoom window by <*F5*> | <*F6*> buttons
@@ -41,7 +41,11 @@ Who's inside?
 * support 8-color terminals
 * current line highlight
 
+### TODO:
+
+* Move all plugins to package manager ([*Vundle*](https://github.com/gmarik/vundle))
+
 -------------------------
-Version 1.5 (31 march 2012)
+Version 1.6 (21 september 2012)
 -------------------------
 
