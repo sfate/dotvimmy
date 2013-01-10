@@ -105,7 +105,7 @@ autocmd BufRead,BufNewFile Gemfile   set filetype=gemfile
 autocmd BufRead,BufNewFile config.ru set filetype=ruby
 
 " Use colorshemes for tty and pty
-if $COLORTERM == "gnome-terminal" || $TERM == "xterm"
+if match($COLORTERM, "gnome-terminal") || match($TERM, "xterm-256") || match($TERM, "screen-256")
   set t_Co=256
   colorscheme molokai
   let g:molokai_original = 1
