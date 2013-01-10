@@ -2,5 +2,6 @@
 *
 # except
 !.vim/*
+!.vim/*/*
 !.vimrc
 !Readme.md
