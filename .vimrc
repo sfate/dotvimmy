@@ -114,6 +114,14 @@ else
   colorscheme slate
 endif
 
+" Handle tmux $TERM quirks in vim.
+if match($TERM, "screen")
+  map <Esc>OH <Home>
+  map! <Esc>OH <Home>
+  map <Esc>OF <End>
+  map! <Esc>OF <End>
+endif
+
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
