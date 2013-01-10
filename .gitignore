@@ -1,7 +1,0 @@
-# all
-*
-# except
-!.vim/*
-!.vim/*/*
-!.vimrc
-!Readme.md
