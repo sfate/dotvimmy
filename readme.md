@@ -3,12 +3,10 @@ Sfate's *VIM* settings assembly
 Inspired by love in *VIM* <3
 
 -------------------------
-Install
+Install or Update
 -------------------------
-`$ cd $HOME && git clone git@github.com:Sfate/Vim-environment.git ./`
-Update
--------------------------
-`$ cd $HOME && git pull`
+`$ curl -Lo- http://git.io/deploy.sh | bash`
+##### *Note*: This will override your existing vim setup!
 
 -------------------------
 Who's inside?
@@ -46,6 +44,6 @@ Who's inside?
 * Move all plugins to package manager ([*Vundle*](https://github.com/gmarik/vundle))
 
 -------------------------
-Version 1.6 (21 september 2012)
+Version 1.7 (10 january 2013)
 -------------------------
 

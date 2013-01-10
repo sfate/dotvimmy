@@ -4,18 +4,17 @@
 "    Site: http://evil4live.wordpress.com
 "    Mail: alexey.bobyrev@gmail.com
 "
-" Version: 1.6 - 21/09/12
+" Version: 1.7 - 10/01/13
 "
 " Syntax_highlighted:
 "    http://git.io/.vimrc
 " Raw_version:
 "    http://git.io/.vimrc.txt
 "
-" How_to_Install:
-"    $ cd $HOME && git clone git@github.com:Sfate/Vim-environment.git .
+" How_to_Install_or_Update:
+"    !NOTE: This will erase your existing vim setup
+"    $ curl -Lo- http://git.io/deploy.sh | bash
 "
-" How_to_Upgrade:
-"    $ cd $HOME && git pull
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
