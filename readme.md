@@ -13,17 +13,17 @@ Who's inside?
 -------------------------
 ###Plugins:
 
-* (Vundle)[https://github.com/gmarik/vundle]
-* (NERDTree)[https://github.com/scrooloose/nerdtree]
-* (tComment)[https://github.com/vim-scripts/tComment]
-* (vim-rails)[https://github.com/tpope/vim-rails]
-* (vim-ruby)[https://github.com/vim-ruby/vim-ruby]
-* (vim-javascript)[https://github.com/pangloss/vim-javascript]
-* (vim-haml)[https://github.com/tpope/vim-haml]
-* (CSApprox)[https://github.com/vim-scripts/CSApprox]
-* (snipMate)[https://github.com/msanders/snipmate.vim]
+* [Vundle](https://github.com/gmarik/vundle)
+* [NERDTree](https://github.com/scrooloose/nerdtree)
+* [tComment](https://github.com/vim-scripts/tComment)
+* [vim-rails](https://github.com/tpope/vim-rails)
+* [vim-ruby](https://github.com/vim-ruby/vim-ruby)
+* [vim-javascript](https://github.com/pangloss/vim-javascript)
+* [vim-haml](https://github.com/tpope/vim-haml)
+* [CSApprox](https://github.com/vim-scripts/CSApprox)
+* [snipMate](https://github.com/msanders/snipmate.vim)
 
-###Colorscheme - (molokai)[https://github.com/tomasr/molokai]
+###Colorscheme - [molokai](https://github.com/tomasr/molokai)
 
 ![Colorscheme preview](/preview.png)
 
