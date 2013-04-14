@@ -20,11 +20,14 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle - Vim Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Requirements
 set encoding=utf-8
 set nocompatible
 filetype off
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+
 " Plugins
 Bundle 'gmarik/vundle'
 Bundle 'vim-ruby/vim-ruby'
