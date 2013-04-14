@@ -18,11 +18,28 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle - Vim Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set encoding=utf-8
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" Plugins
+Bundle 'gmarik/vundle'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rails'
+Bundle 'scrooloose/nerdtree'
+Bundle 'msanders/snipmate.vim'
+Bundle 'vim-scripts/csapprox'
+Bundle 'vim-scripts/tComment'
+Bundle 'pangloss/vim-javascript'
+Bundle 'tpope/vim-haml'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the the old vi behavior
-set nocompatible
-
 " Disable buffer cleaning on BuffLeave events
 set hidden
 
@@ -38,11 +55,10 @@ set noswapfile
 set confirm
 
 " Enable filetype plugin
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Enable paste mode for pasting from outside
-set pastetoggle=
+set pastetoggle=<F2>
 
 " Highlight pair brackets
 set showmatch
