@@ -1,10 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: Sfate
-"    Name: Alex Mercer
-"    Site: http://evil4live.wordpress.com
-"    Mail: alexey.bobyrev@gmail.com
-"
-" Version: 1.7 - 10/01/13
+" Maintainer: https://github.com/Sfate
+" Version: 1.8 - 15/04/13
 "
 " Syntax_highlighted:
 "    http://git.io/.vimrc

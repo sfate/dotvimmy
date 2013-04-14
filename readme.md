@@ -13,18 +13,19 @@ Who's inside?
 -------------------------
 ###Plugins:
 
-* NERDTree
-* tComment
-* Rails
-* RailsIndent
-* snipMate
+* (Vundle)[https://github.com/gmarik/vundle]
+* (NERDTree)[https://github.com/scrooloose/nerdtree]
+* (tComment)[https://github.com/vim-scripts/tComment]
+* (vim-rails)[https://github.com/tpope/vim-rails]
+* (vim-ruby)[https://github.com/vim-ruby/vim-ruby]
+* (vim-javascript)[https://github.com/pangloss/vim-javascript]
+* (vim-haml)[https://github.com/tpope/vim-haml]
+* (CSApprox)[https://github.com/vim-scripts/CSApprox]
+* (snipMate)[https://github.com/msanders/snipmate.vim]
 
-###Colorschemes:
+###Colorscheme - (molokai)[https://github.com/tomasr/molokai]
 
-* molokai
-* Mustang
-* twilight
-* railscasts
+![Colorscheme preview](/preview.png)
 
 ###Amendments:
 
@@ -39,11 +40,7 @@ Who's inside?
 * support 8-color terminals
 * current line highlight
 
-### TODO:
-
-* Move all plugins to package manager ([*Vundle*](https://github.com/gmarik/vundle))
-
 -------------------------
-Version 1.7 (10 january 2013)
+Version 1.8 (15 april 2013)
 -------------------------
 
