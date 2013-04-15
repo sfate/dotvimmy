@@ -39,6 +39,9 @@ Bundle 'tpope/vim-haml'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Avoid CSApprox warning message
+let g:CSApprox_verbose_level = 0
+
 " Disable buffer cleaning on BuffLeave events
 set hidden
 
