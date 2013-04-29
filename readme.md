@@ -23,7 +23,7 @@ Who's inside?
 * [CSApprox](https://github.com/vim-scripts/CSApprox)
 * [snipMate](https://github.com/msanders/snipmate.vim)
 * [grep](https://github.com/Sfate/grep.vim)
-* [grep](https://github.com/kien/ctrlp.vim)
+* [ctrlp](https://github.com/kien/ctrlp.vim)
 
 ###Colorscheme - [molokai](https://github.com/tomasr/molokai)
 
