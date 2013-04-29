@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/Sfate
-" Version: 1.8 - 15/04/13
+" Version: 1.9 - 29/04/13
 "
 " Syntax_highlighted:
 "    http://git.io/.vimrc
@@ -34,6 +34,8 @@ Bundle 'vim-scripts/CSApprox'
 Bundle 'vim-scripts/tComment'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-haml'
+Bundle 'Sfate/grep.vim'
+Bundle 'kien/ctrlp.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -97,6 +99,16 @@ set expandtab
 
 " Highligth current line
 set cursorline
+
+"display tabs and trailing spaces
+set list
+set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
+
+" Set path to ack
+let Ack_Path = 'ack-grep'
+
+" Open Grep results in new tab
+let Grep_OpenTabWithQuickfixWindow = 1
 
 " Resize splited windows with Ctrl+arrows
 nmap <C-Left> <C-W><<C-W><

@@ -4,5 +4,7 @@ mv Vim-environment/.vim* .
 mkdir -p .vim/bundle
 git clone git://github.com/gmarik/vundle.git .vim/bundle/vundle
 rm -rf Vim-environment .vim.old
-echo "Please run 'vim +BundleInstall +qall'."
+echo
+echo "  Post install note: Please run 'vim +BundleInstall +qall'."
+echo
 exit 0

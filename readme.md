@@ -22,6 +22,8 @@ Who's inside?
 * [vim-haml](https://github.com/tpope/vim-haml)
 * [CSApprox](https://github.com/vim-scripts/CSApprox)
 * [snipMate](https://github.com/msanders/snipmate.vim)
+* [grep](https://github.com/Sfate/grep.vim)
+* [grep](https://github.com/kien/ctrlp.vim)
 
 ###Colorscheme - [molokai](https://github.com/tomasr/molokai)
 
@@ -39,8 +41,9 @@ Who's inside?
 * <*ctrl*>+arrows to resize current window
 * support 8-color terminals
 * current line highlight
+* show tabs and trailing whitespaces
 
 -------------------------
-Version 1.8 (15 april 2013)
+Version 1.9 (29 april 2013)
 -------------------------
 
