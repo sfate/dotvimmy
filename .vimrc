@@ -104,6 +104,14 @@ set cursorline
 set list
 set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
+" Extremely fast timeout for escape codes
+set timeoutlen=1000 ttimeoutlen=0
+
+" Highlight serch results
+set hlsearch
+set incsearch
+nmap \/ :noh<CR>
+
 " Set path to ack
 let Ack_Path = 'ack-grep'
 
