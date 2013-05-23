@@ -142,7 +142,7 @@ autocmd BufRead,BufNewFile Gemfile   set filetype=gemfile
 autocmd BufRead,BufNewFile config.ru set filetype=ruby
 
 " Use colorshemes for tty and pty
-if match($COLORTERM, "gnome-terminal") || match($TERM, "xterm-256") || match($TERM, "screen-256")
+if $COLORTERM =~# "gnome-terminal" || $TERM =~# "xterm-256" || $TERM =~# "screen-256"
   set t_Co=256
   colorscheme molokai
   let g:molokai_original = 1
@@ -152,7 +152,7 @@ else
 endif
 
 " Handle tmux $TERM quirks in vim.
-if match($TERM, "screen")
+if $TERM =~# "screen"
   map <Esc>OH <Home>
   map! <Esc>OH <Home>
   map <Esc>OF <End>
