@@ -36,6 +36,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-haml'
 Bundle 'Sfate/grep.vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'ervandew/supertab'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
