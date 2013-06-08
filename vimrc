@@ -169,11 +169,9 @@ endif
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Statusline setup
-set statusline=%f       "tail of the filename
-" RVM
-set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
-
-set statusline +=%2*%m%*                "modified flag
+set statusline=%{'['.tabpagenr().']'} "current tab
+set statusline+=\ %f       "tail of the filename
+set statusline +=%2*%m%*   "modified flag
 " Line of right setup
 set statusline+=%=      "left/right separator
 set statusline+=%c,     "cursor column
