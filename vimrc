@@ -30,7 +30,6 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'scrooloose/nerdtree'
 Bundle 'msanders/snipmate.vim'
-Bundle 'vim-scripts/CSApprox'
 Bundle 'vim-scripts/tComment'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-haml'
@@ -42,8 +41,6 @@ Bundle 'ervandew/supertab'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Avoid CSApprox warning message
-let g:CSApprox_verbose_level = 0
 
 " Disable buffer cleaning on BuffLeave events
 set hidden
