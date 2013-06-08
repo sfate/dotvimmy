@@ -173,12 +173,3 @@ set laststatus=2
 " Turn off needless toolbar on gvim/mvim
 set guioptions-=T
 
-" Folding settings:
-  " zo[O] - open [all]fold[-s] under cursor
-  " zc[C] - close [all]fold[-s] under cursor
-  " zM - open all folds
-  " zR - close all folds
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
-
