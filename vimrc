@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/Sfate
-" Version: 1.9 - 29/04/13
+" Version: 1.9.1 - 09/05/13
 "
 " Syntax_highlighted:
 "    http://git.io/.vimrc

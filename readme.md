@@ -38,12 +38,12 @@ Who's inside?
 * removing trailing whitespaces on file save
 * reload file on the fly
 * toggle zoom window by <*F5*> | <*F6*> buttons
-* <*ctrl*>+arrows to resize current window
 * support 8-color terminals
 * current line highlight
 * show tabs and trailing whitespaces
+* and so on.. for more info look at [vimrc](https://github.com/Sfate/Vim-environment/blob/master/vimrc) file ;)
 
 -------------------------
-Version 1.9 (29 april 2013)
+Version 1.9.1 (09 may 2013)
 -------------------------
 
