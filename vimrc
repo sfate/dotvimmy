@@ -116,17 +116,11 @@ let Ack_Path = 'ack-grep'
 " Open Grep results in new tab
 let Grep_OpenTabWithQuickfixWindow = 1
 
-" Resize splited windows with Ctrl+arrows
-nmap <C-Left> <C-W><<C-W><
-nmap <C-Right> <C-W>><C-W>>
-nmap <C-Up> <C-W>-<C-W>-
-nmap <C-Down> <C-W>+<C-W>+
-
 " Maximize and restore windows
 map <F5> :set noequalalways winminheight=0 winheight=9999 helpheight=9999 winminwidth=0 winwidth=9999<CR>
-map <F6> :set winheight=1 winwidth=1 helpheight& equalalways<CR>:wincmd =<CR>
-imap <F5> <ESC>
-imap <F6> <ESC>
+map <F6> :set winheight=1 winwidth=1 helpheight& equalalways <bar> :wincmd =<CR>
+imap <F5> <C-O><F5>
+imap <F6> <C-O><F6>
 
 " Enable Obective-J files highlight
 autocmd BufRead,BufNewFile *.j       set filetype=objective-j
