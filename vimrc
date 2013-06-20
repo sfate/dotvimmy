@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/Sfate
-" Version: 1.9.1 - 09/05/13
+" Version: 1.9.2 - 20/06/13
 "
 " Syntax_highlighted:
 "    http://git.io/.vimrc
@@ -28,7 +28,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
-Bundle 'scrooloose/nerdtree'
 Bundle 'msanders/snipmate.vim'
 Bundle 'vim-scripts/tComment'
 Bundle 'pangloss/vim-javascript'
@@ -122,12 +121,21 @@ map <F6> :set winheight=1 winwidth=1 helpheight& equalalways <bar> :wincmd =<CR>
 imap <F5> <C-O><F5>
 imap <F6> <C-O><F6>
 
+" Disable proper keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+nnoremap <home> <nop>
+nnoremap <end> <nop>
+
+" Force override RO-files with W
+command W silent execute 'w !sudo tee % > /dev/null'
+
 " Enable Obective-J files highlight
 autocmd BufRead,BufNewFile *.j       set filetype=objective-j
 " Enable nginx conf's files highlight
 autocmd BufRead,BufNewFile */nginx/* set filetype=nginx
-" Enable Haskell files highlight
-autocmd BufEnter *.hsc               set filetype=haskell
 " Enable Gemfile highlight
 autocmd BufRead,BufNewFile Gemfile   set filetype=gemfile
 " Enable config.ru highlight
@@ -139,6 +147,7 @@ if $COLORTERM =~# "-terminal" || $TERM =~# "xterm-256" || $TERM =~# "screen-256"
   colorscheme molokai
   let g:molokai_original = 1
 else
+  set background=dark
   set t_Co=8
   colorscheme slate
 endif
