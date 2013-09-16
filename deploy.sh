@@ -1,11 +1,11 @@
-cd $HOME && git clone git://github.com/Sfate/Vim-environment.git Vim-environment
-[ -d .vim ] && mv .vim{,.old}
-mv Vim-environment/vim .vim
-mv Vim-environment/vimrc .vimrc
+set -e
+cd $HOME
+
+(wget -N -O .vimrc https://raw.github.com/Sfate/Vim-environment/master/vimrc) > /dev/null 2>&1
+[ -d .vim ] && rm -rf .vim
 mkdir -p .vim/bundle
-git clone git://github.com/gmarik/vundle.git .vim/bundle/vundle
-rm -rf Vim-environment .vim.old
-echo
-echo "  Post install note: Please run 'vim +BundleInstall +qall'."
-echo
+(git clone git://github.com/gmarik/vundle.git .vim/bundle/vundle) > /dev/null 2>&1
+
+vim +BundleInstall +qall < /dev/tty > /dev/tty
+
 exit 0

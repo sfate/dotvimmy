@@ -1,11 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/Sfate
-" Version: 1.9.2 - 20/06/13
-"
-" Syntax_highlighted:
-"    http://git.io/.vimrc
-" Raw_version:
-"    http://git.io/.vimrc.txt
+" Version: 1.9.3 - 16/09/13
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will erase your existing vim setup
@@ -26,15 +21,15 @@ call vundle#rc()
 
 " Plugins
 Bundle 'gmarik/vundle'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
-Bundle 'msanders/snipmate.vim'
+Bundle 'sheerun/vim-polyglot'
 Bundle 'vim-scripts/tComment'
-Bundle 'pangloss/vim-javascript'
-Bundle 'tpope/vim-haml'
+Bundle 'msanders/snipmate.vim'
 Bundle 'Sfate/grep.vim'
 Bundle 'kien/ctrlp.vim'
-Bundle 'ervandew/supertab'
+" Colors
+Bundle 'tomasr/molokai'
+Bundle 'michalbachowski/vim-wombat256mod'
+Bundle 'sindresorhus/focus'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -109,11 +104,17 @@ set hlsearch
 set incsearch
 nmap \/ :noh<CR>
 
+" Set ignorable paths for ctrl-p
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
 " Set path to ack
-let Ack_Path = 'ack-grep'
+let g:Ack_Path = 'ack-grep'
 
 " Open Grep results in new tab
-let Grep_OpenTabWithQuickfixWindow = 1
+let g:Grep_OpenTabWithQuickfixWindow = 1
+
+" Set this to 0 before file save to disable whitespaces trim
+let g:strip_whitespaces = 1
 
 " Maximize and restore windows
 map <F5> :set noequalalways winminheight=0 winheight=9999 helpheight=9999 winminwidth=0 winwidth=9999<CR>
@@ -132,17 +133,8 @@ nnoremap <end> <nop>
 " Force override RO-files with W
 command W silent execute 'w !sudo tee % > /dev/null'
 
-" Enable Obective-J files highlight
-autocmd BufRead,BufNewFile *.j       set filetype=objective-j
-" Enable nginx conf's files highlight
-autocmd BufRead,BufNewFile */nginx/* set filetype=nginx
-" Enable Gemfile highlight
-autocmd BufRead,BufNewFile Gemfile   set filetype=gemfile
-" Enable config.ru highlight
-autocmd BufRead,BufNewFile config.ru set filetype=ruby
-
 " Use colorshemes for tty and pty
-if $COLORTERM =~# "-terminal" || $TERM =~# "xterm-256" || $TERM =~# "screen-256"
+if filereadable(g:bundle_dir . '/molokai/colors/molokai.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256")
   set t_Co=256
   colorscheme molokai
   let g:molokai_original = 1
@@ -151,9 +143,6 @@ else
   set t_Co=8
   colorscheme slate
 endif
-
-" Remove all trailing whitespaces
-autocmd BufWritePre * :%s/\s\+$//e
 
 " Statusline setup
 set statusline=%{'['.tabpagenr().']'} "current tab
@@ -166,6 +155,15 @@ set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 set laststatus=2
 
-" Turn off needless toolbar on gvim/mvim
-set guioptions-=T
-
+" Remove all trailing whitespaces
+function! s:StripTrailingWhitespaces()
+  if g:strip_whitespaces == 1 && search('\s\+$', 'n')
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    let @/=_s
+    call cursor(l, c)
+  endif
+endfunction
+autocmd BufWritePre * call<SID>StripTrailingWhitespaces()
