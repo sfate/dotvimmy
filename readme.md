@@ -23,8 +23,9 @@ Who's inside?
 * [snipMate](https://github.com/msanders/snipmate.vim)
 * [grep](https://github.com/Sfate/grep.vim)
 * [ctrlp](https://github.com/kien/ctrlp.vim)
+* [lightline](https://github.com/itchyny/lightline.vim)
 
-###Colorscheme - [molokai](https://github.com/tomasr/molokai)
+###Colorscheme - [wombat256](https://github.com/vim-scripts/wombat256.vim)
 
 ![Colorscheme preview](/preview.png)
 
@@ -40,9 +41,9 @@ Who's inside?
 * current line highlight
 * show tabs and trailing whitespaces
 * disable *arrows*, *home* and *end* buttons
-* and so on.. for more info look at [vimrc](https://github.com/Sfate/Vim-environment/blob/master/vimrc) file ;)
+* and so on.. for more info take a look at [vimrc](https://github.com/Sfate/Vim-environment/blob/master/vimrc) file ;)
 
 -------------------------
-Version 1.9.3 (16 september 2013)
+Version 1.9.4 (11 october 2013)
 -------------------------
 

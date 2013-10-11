@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/Sfate
-" Version: 1.9.3 - 16/09/13
+" Version: 1.9.4 - 11/10/13
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will erase your existing vim setup
@@ -26,10 +26,9 @@ Bundle 'vim-scripts/tComment'
 Bundle 'msanders/snipmate.vim'
 Bundle 'Sfate/grep.vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'itchyny/lightline.vim'
 " Colors
-Bundle 'tomasr/molokai'
 Bundle 'michalbachowski/vim-wombat256mod'
-Bundle 'sindresorhus/focus'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -134,26 +133,28 @@ nnoremap <end> <nop>
 command W silent execute 'w !sudo tee % > /dev/null'
 
 " Use colorshemes for tty and pty
-if filereadable(g:bundle_dir . '/molokai/colors/molokai.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256")
+if filereadable(g:bundle_dir . '/vim-wombat256mod/colors/wombat256mod.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256")
   set t_Co=256
-  colorscheme molokai
-  let g:molokai_original = 1
+  colorscheme wombat256mod
+  let g:lightline = {
+    \ 'colorscheme': 'wombat'
+  \ }
 else
   set background=dark
   set t_Co=8
   colorscheme slate
+  " Statusline setup
+  set statusline=%{'['.tabpagenr().']'} "current tab
+  set statusline+=\ %f       "tail of the filename
+  set statusline +=%2*%m%*   "modified flag
+  " Line of right setup
+  set statusline+=%=      "left/right separator
+  set statusline+=%c,     "cursor column
+  set statusline+=%l/%L   "cursor line/total lines
+  set statusline+=\ %P    "percent through file
 endif
-
-" Statusline setup
-set statusline=%{'['.tabpagenr().']'} "current tab
-set statusline+=\ %f       "tail of the filename
-set statusline +=%2*%m%*   "modified flag
-" Line of right setup
-set statusline+=%=      "left/right separator
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
 set laststatus=2
+
 
 " Remove all trailing whitespaces
 function! s:StripTrailingWhitespaces()
