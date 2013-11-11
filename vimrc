@@ -130,7 +130,7 @@ nnoremap <home> <nop>
 nnoremap <end> <nop>
 
 " Force override RO-files with W
-command W silent execute 'w !sudo tee % > /dev/null'
+command W silent execute 'w !sudo tee % > /dev/null' | :e!
 
 " Use colorshemes for tty and pty
 if filereadable(g:bundle_dir . '/vim-wombat256mod/colors/wombat256mod.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256")
