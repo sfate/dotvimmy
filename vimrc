@@ -24,7 +24,7 @@ Bundle 'gmarik/vundle'
 Bundle 'sheerun/vim-polyglot'
 Bundle 'vim-scripts/tComment'
 Bundle 'msanders/snipmate.vim'
-Bundle 'Sfate/grep.vim'
+Bundle 'sfate/grep.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'itchyny/lightline.vim'
 " Colors
