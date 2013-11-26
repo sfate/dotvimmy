@@ -1,7 +1,7 @@
 # Sfate's *VIM* settings assembly [![Build Status][travis-img-url]][travis-url]
 
-[travis-img-url]: https://travis-ci.org/Sfate/Vim-environment.png
-[travis-url]: https://travis-ci.org/Sfate/Vim-environment
+[travis-img-url]: https://travis-ci.org/sfate/Vim-environment.png
+[travis-url]: https://travis-ci.org/sfate/Vim-environment
 
 ================================
 Inspired by love in *VIM* <3
