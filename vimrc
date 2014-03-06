@@ -27,7 +27,9 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'sfate/grep.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'itchyny/lightline.vim'
-Bundle 'Valloric/YouCompleteMe'
+if v:version > 703
+  Bundle 'Valloric/YouCompleteMe'
+endif
 " Colors
 Bundle 'morhetz/gruvbox'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
