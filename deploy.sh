@@ -8,6 +8,10 @@ echo "[*] Starting deploy of vim configuration."
 [ -d .vim ] && rm -rf .vim
 mkdir -p .vim/bundle
 (git clone https://github.com/gmarik/vundle.git .vim/bundle/vundle) > /dev/null 2>&1
+(git clone https://github.com/Valloric/YouCompleteMe.git .vim/bundle/YouCompleteMe) > /dev/null 2>&1
+cd .vim/bundle/YouCompleteMe
+(git submodule update --init --recursive) > /dev/null 2>&1
+(./install.sh --clang-completer) > /dev/null 2>&1
 
 vim +BundleInstall +qall < /dev/tty > /dev/tty
 
