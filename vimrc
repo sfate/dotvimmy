@@ -27,8 +27,9 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'sfate/grep.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'itchyny/lightline.vim'
+Bundle 'Valloric/YouCompleteMe'
 " Colors
-Bundle 'michalbachowski/vim-wombat256mod'
+Bundle 'morhetz/gruvbox'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -50,7 +51,10 @@ set noswapfile
 set confirm
 
 " Enable filetype plugin
-filetype plugin indent on
+filetype plugin indent on                          
+
+" Enable syntax highlight
+syntax on
 
 " Enable paste mode for pasting from outside
 set pastetoggle=<F2>
@@ -130,12 +134,14 @@ nnoremap <home> <nop>
 nnoremap <end> <nop>
 
 " Force override RO-files with W
-command W silent execute 'w !sudo tee % > /dev/null' | :e!
+command W silent execute 'w !sudo tee % > /dev/null' | :e! | syn on
 
 " Use colorshemes for tty and pty
-if filereadable(g:bundle_dir . '/vim-wombat256mod/colors/wombat256mod.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256")
+if filereadable(g:bundle_dir . '/gruvbox/colors/gruvbox.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256")
   set t_Co=256
-  colorscheme wombat256mod
+  set bg=dark
+  let g:gruvbox_italic=0
+  colorscheme gruvbox
   let g:lightline = {
     \ 'colorscheme': 'wombat'
   \ }
@@ -154,7 +160,6 @@ else
   set statusline+=\ %P    "percent through file
 endif
 set laststatus=2
-
 
 " Remove all trailing whitespaces
 function! s:StripTrailingWhitespaces()
