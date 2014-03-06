@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/Sfate
-" Version: 1.9.4 - 11/10/13
+" Version: 1.9.5 - 06/03/14
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will erase your existing vim setup
@@ -51,7 +51,7 @@ set noswapfile
 set confirm
 
 " Enable filetype plugin
-filetype plugin indent on                          
+filetype plugin indent on
 
 " Enable syntax highlight
 syntax on

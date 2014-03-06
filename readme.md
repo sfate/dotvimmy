@@ -24,8 +24,9 @@ Who's inside?
 * [grep](https://github.com/Sfate/grep.vim)
 * [ctrlp](https://github.com/kien/ctrlp.vim)
 * [lightline](https://github.com/itchyny/lightline.vim)
+* [YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
 
-###Colorscheme - [wombat256](https://github.com/vim-scripts/wombat256.vim)
+###Colorscheme - [gruvbox](https://github.com/morhetz/gruvbox)
 
 ![Colorscheme preview](/preview.png)
 
@@ -44,6 +45,6 @@ Who's inside?
 * and so on.. for more info take a look at [vimrc](https://github.com/Sfate/Vim-environment/blob/master/vimrc) file ;)
 
 -------------------------
-Version 1.9.4 (11 october 2013)
+Version 1.9.5 (06 march 2014)
 -------------------------
 
