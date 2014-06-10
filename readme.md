@@ -25,6 +25,7 @@ Who's inside?
 * [ctrlp](https://github.com/kien/ctrlp.vim)
 * [lightline](https://github.com/itchyny/lightline.vim)
 * [YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
+* [vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides)
 
 ###Colorscheme - [gruvbox](https://github.com/morhetz/gruvbox)
 

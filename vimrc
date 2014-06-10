@@ -27,6 +27,7 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'sfate/grep.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'itchyny/lightline.vim'
+Bundle 'nathanaelkane/vim-indent-guides'
 if v:version > 703
   Bundle 'Valloric/YouCompleteMe'
 endif
