@@ -25,6 +25,7 @@ Bundle 'sheerun/vim-polyglot'
 Bundle 'vim-scripts/tComment'
 Bundle 'msanders/snipmate.vim'
 Bundle 'sfate/grep.vim'
+Bundle 'rking/ag.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'itchyny/lightline.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -33,6 +34,7 @@ if v:version > 703
 endif
 " Colors
 Bundle 'morhetz/gruvbox'
+Bundle 'chriskempson/vim-tomorrow-theme'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -100,7 +102,7 @@ set cursorline
 
 "display tabs and trailing spaces
 set list
-set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
+set listchars=tab:>-,trail:⋅,nbsp:⋅
 
 " Extremely fast timeout for escape codes
 set timeoutlen=1000 ttimeoutlen=0
@@ -110,11 +112,14 @@ set hlsearch
 set incsearch
 nmap \/ :noh<CR>
 
+" Highlihgt can be really slow. Limit it for performance reasons
+set synmaxcol=120
+
 " Set ignorable paths for ctrl-p
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Set path to ack
-let g:Ack_Path = 'ack-grep'
+let g:Ack_Path = 'ack'
 
 " Open Grep results in new tab
 let g:Grep_OpenTabWithQuickfixWindow = 1
@@ -176,3 +181,11 @@ function! s:StripTrailingWhitespaces()
   endif
 endfunction
 autocmd BufWritePre * call<SID>StripTrailingWhitespaces()
+
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
