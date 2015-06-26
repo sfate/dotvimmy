@@ -1,16 +1,9 @@
-# Sfate's *VIM* settings assembly [![Build Status][travis-img-url]][travis-url]
+# *VIM* settings assembly
 
-[travis-img-url]: https://travis-ci.org/sfate/Vim-environment.png
-[travis-url]: https://travis-ci.org/sfate/Vim-environment
-
-================================
-Inspired by love in *VIM* <3
-
--------------------------
 Install or Update
 -------------------------
-`$ curl -Lo- http://git.io/deploy.sh | bash`
-##### *Note*: This will override your existing vim setup!
+`$ curl -sLo- http://git.io/deploy.sh | bash`
+#### *Note*: This will override your existing vim setup!
 
 -------------------------
 Who's inside?
@@ -21,10 +14,9 @@ Who's inside?
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
 * [tComment](https://github.com/vim-scripts/tComment)
 * [snipMate](https://github.com/msanders/snipmate.vim)
-* [grep](https://github.com/Sfate/grep.vim)
+* [ag](https://github.com/rking/ag.vim)
 * [ctrlp](https://github.com/kien/ctrlp.vim)
 * [lightline](https://github.com/itchyny/lightline.vim)
-* [YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
 * [vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides)
 
 ###Colorscheme - [gruvbox](https://github.com/morhetz/gruvbox)
@@ -46,6 +38,6 @@ Who's inside?
 * and so on.. for more info take a look at [vimrc](https://github.com/Sfate/Vim-environment/blob/master/vimrc) file ;)
 
 -------------------------
-Version 1.9.5 (06 march 2014)
+Version 1.9.6 (30 june 2015)
 -------------------------
 

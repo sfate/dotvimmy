@@ -24,17 +24,12 @@ Bundle 'gmarik/vundle'
 Bundle 'sheerun/vim-polyglot'
 Bundle 'vim-scripts/tComment'
 Bundle 'msanders/snipmate.vim'
-Bundle 'sfate/grep.vim'
 Bundle 'rking/ag.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'itchyny/lightline.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
-if v:version > 703
-  Bundle 'Valloric/YouCompleteMe'
-endif
 " Colors
 Bundle 'morhetz/gruvbox'
-Bundle 'chriskempson/vim-tomorrow-theme'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,16 +108,10 @@ set incsearch
 nmap \/ :noh<CR>
 
 " Highlihgt can be really slow. Limit it for performance reasons
-set synmaxcol=120
+set synmaxcol=160
 
 " Set ignorable paths for ctrl-p
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-
-" Set path to ack
-let g:Ack_Path = 'ack'
-
-" Open Grep results in new tab
-let g:Grep_OpenTabWithQuickfixWindow = 1
 
 " Set this to 0 before file save to disable whitespaces trim
 let g:strip_whitespaces = 1
@@ -145,7 +134,7 @@ nnoremap <end> <nop>
 command W silent execute 'w !sudo tee % > /dev/null' | :e! | syn on
 
 " Use colorshemes for tty and pty
-if filereadable(g:bundle_dir . '/gruvbox/colors/gruvbox.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256")
+if filereadable(g:vundle#bundle_dir . '/gruvbox/colors/gruvbox.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256")
   set t_Co=256
   set bg=dark
   let g:gruvbox_italic=0
@@ -180,10 +169,15 @@ function! s:StripTrailingWhitespaces()
     call cursor(l, c)
   endif
 endfunction
+command! StripTrailingWhitespaces call<SID>StripTrailingWhitespaces()
+
+autocmd BufRead,BufNewFile Gemfile*  set filetype=ruby
+autocmd BufRead,BufNewFile */nginx/* set filetype=nginx
 autocmd BufWritePre * call<SID>StripTrailingWhitespaces()
 
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git
+      \ --ignore .bundle
       \ --ignore .svn
       \ --ignore .hg
       \ --ignore .DS_Store
