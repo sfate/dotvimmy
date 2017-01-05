@@ -1,21 +1,53 @@
+# Maintainer: https://github.com/sfate
+# Source: https://github.com/sfate/dotvimmy
+# Version: 1.9.7 - 5 Jun 2016
+#        __      __        _
+#   ____/ /___  / /__   __(_)___ ___  ____ ___  __  __
+#  / __  / __ \/ __/ | / / / __ `__ \/ __ `__ \/ / / /
+# / /_/ / /_/ / /_ | |/ / / / / / / / / / / / / /_/ /
+# \__,_/\____/\__/ |___/_/_/ /_/ /_/_/ /_/ /_/\__, /
+#                                            /____/
+# How_to_Install_or_Update:
+#    !NOTE: This will override your existing vim setup
+#    $ curl -Lo- https://git.io/dotvimmy-deploy.sh | bash
 set -e
-cd $HOME
 
 start_time=$(date +%s)
+release_name=$(date +"%Y%m%d%H%M%S")
+vimmy_dir=$HOME/.vimmy
+releases_dir=$vimmy_dir/releases
+backup_dir=$vimmy_dir/backup
+current_release_dir=$releases_dir/$release_name
+current_backup_dir=$backup_dir/$release_name
+
+echo "[*] Downloaded deploy script for: https://github.com/sfate/dotvimmy"
 echo "[*] Start deploy of vim configuration"
 
+echo "[*] Old configuration backup"
+(mkdir -p $vimmy_dir/{backup,releases}/$release_name)
+(mkdir -p $current_release_dir/vim/bundle)
+(mv $HOME/.vimrc $current_backup_dir)
+(mv $HOME/.vim   $current_backup_dir)
+
 echo "[*] Fetch vimrc"
-(wget -N -O .vimrc https://raw.github.com/Sfate/Vim-environment/master/vimrc) &> /dev/null
+(wget -N -O $current_release_dir/vimrc https://raw.github.com/sfate/dotvimmy/master/vimrc) &> /dev/null
+
+echo "[*] Link folders"
+(ln -s $current_release_dir/vimrc $HOME/.vimrc)
+(ln -s $current_release_dir/vim   $HOME/.vim)
 
 echo "[*] Clone vundle plugin"
-[ -d .vim ] && rm -rf .vim
-mkdir -p .vim/bundle
-(git clone https://github.com/gmarik/vundle.git .vim/bundle/vundle --quiet) &> /dev/null
+(git clone https://github.com/VundleVim/Vundle.vim.git $current_release_dir/vim/bundle/Vundle.vim --quiet) &> /dev/null
 
 echo "[*] Installing plugins"
-(vim -u NONE -S ~/.vimrc +PluginInstall +qall) < /dev/tty &> /dev/null
+(vim -u NONE -S ~/.vimrc +PluginInstall! +qall) < /dev/tty &> /dev/null
 
-end_time=$(date +%s)
-echo "[*] Deployed successfully. Time spent: $(($end_time-$start_time))s"
+echo "[*] Clean up"
+old_releases=$(ls -td $releases_dir/* | tail -n +6)
+old_backups=$(ls -td $backup_dir/* | tail -n +6)
+[ -n "$old_releases" ] && rm -rf $old_releases
+[ -n "$old_backups" ] && rm -rf $old_backups
+
+echo "[*] Deployed successfully. Time spent: $(($(date +%s)-$start_time))s"
 
 exit 0
