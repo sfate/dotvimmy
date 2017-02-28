@@ -26,8 +26,16 @@ echo "[*] Start deploy of vim configuration"
 echo "[*] Old configuration backup"
 (mkdir -p $vimmy_dir/{backup,releases}/$release_name)
 (mkdir -p $current_release_dir/vim/bundle)
-(mv $HOME/.vimrc $current_backup_dir)
-(mv $HOME/.vim   $current_backup_dir)
+if [ -e "$HOME/.vimrc" ]; then
+  mv $HOME/.vimrc $current_backup_dir
+else
+  echo '  > No ".vimrc" file found. Skipping...' 
+fi
+if [ -e "$HOME/.vim" ]; then
+  mv $HOME/.vim $current_backup_dir
+else
+  echo '  > No ".vim" folder found. Skipping...' 
+fi
 
 echo "[*] Fetch vimrc"
 (wget -N -O $current_release_dir/vimrc https://raw.github.com/sfate/dotvimmy/master/vimrc) &> /dev/null
@@ -46,7 +54,7 @@ echo "[*] Clean up"
 old_releases=$(ls -td $releases_dir/* | tail -n +6)
 old_backups=$(ls -td $backup_dir/* | tail -n +6)
 [ -n "$old_releases" ] && rm -rf $old_releases
-[ -n "$old_backups" ] && rm -rf $old_backups
+[ -n "$old_backups" ]  && rm -rf $old_backups
 
 echo "[*] Deployed successfully. Time spent: $(($(date +%s)-$start_time))s"
 
