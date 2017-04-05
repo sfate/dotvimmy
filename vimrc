@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/sfate
 " Source: https://github.com/sfate/dotvimmy
-" Version: 1.9.7 - 5 Jan 2016
+" Version: 1.9.8 - 5 Apr 2017
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will override your existing vim setup
@@ -25,12 +25,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'vim-scripts/tComment'
-Plugin 'rking/ag.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'haya14busa/vim-auto-programming'
 Plugin 'bogado/file-line'
 Plugin 'mhinz/vim-startify'
+Plugin 'wincent/ferret'
+Plugin 'blueyed/vim-qf_resize'
 " Colors
 Plugin 'morhetz/gruvbox'
 call vundle#end()

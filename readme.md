@@ -11,12 +11,13 @@ All deployed versions and old configurations are stored at `~/.vimmy`.
 * [Vundle](https://github.com/gmarik/vundle)
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
 * [tComment](https://github.com/vim-scripts/tComment)
-* [ag](https://github.com/rking/ag.vim)
 * [lightline](https://github.com/itchyny/lightline.vim)
 * [vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides)
 * [vim-auto-programming](https://github.com/haya14busa/vim-auto-programming)
 * [file-line](https://github.com/bogado/file-line)
 * [vim-startify](https://github.com/mhinz/vim-startify)
+* [ferret](https://github.com/wincent/ferret)
+* [vim-qf_resize](https://github.com/blueyed/vim-qf_resize)
 
 ### Colorscheme - [gruvbox](https://github.com/morhetz/gruvbox)
 ![Colorscheme preview](/preview.png)
@@ -35,4 +36,4 @@ All deployed versions and old configurations are stored at `~/.vimmy`.
 |disable *arrows*, *home* and *end* buttons|
 |and so on.. for more info take a look at [vimrc](https://github.com/sfate/dotvimmy/blob/master/vimrc) file ;)|
 
-### Version 1.9.7 (05 Jan 2017)
+### Version 1.9.8 (05 Apr 2017)
