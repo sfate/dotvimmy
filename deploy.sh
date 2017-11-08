@@ -1,6 +1,6 @@
 # Maintainer: https://github.com/sfate
 # Source: https://github.com/sfate/dotvimmy
-# Version: 1.9.8 - 5 Apr 2017
+# Version: 1.9.9 - 08/Nov/2017
 #        __      __        _
 #   ____/ /___  / /__   __(_)___ ___  ____ ___  __  __
 #  / __  / __ \/ __/ | / / / __ `__ \/ __ `__ \/ / / /
