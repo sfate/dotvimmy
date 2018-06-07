@@ -38,7 +38,7 @@ else
 fi
 
 echo "[*] Fetch vimrc"
-(wget -N -O $current_release_dir/vimrc https://raw.github.com/sfate/dotvimmy/master/vimrc) &> /dev/null
+(curl curl -sLo $current_release_dir/vimrc https://raw.github.com/sfate/dotvimmy/master/vimrc) &> /dev/null
 
 echo "[*] Link folders"
 (ln -s $current_release_dir/vimrc $HOME/.vimrc)
