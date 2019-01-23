@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/sfate
 " Source: https://github.com/sfate/dotvimmy
-" Version: 1.9.9 - 08/Nov/2017
+" Version: 1.9.8 - 23 Jan 2019
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will override your existing vim setup
@@ -31,6 +31,8 @@ Plugin 'haya14busa/vim-auto-programming'
 Plugin 'bogado/file-line'
 Plugin 'mhinz/vim-startify'
 Plugin 'wincent/ferret'
+Plugin 'luochen1990/rainbow'
+Plugin 'andymass/vim-matchup'
 " Colors
 Plugin 'morhetz/gruvbox'
 call vundle#end()
@@ -99,26 +101,27 @@ set expandtab
 " Highligth current line
 set cursorline
 
-"display tabs and trailing spaces
+" Display tabs and trailing spaces
 set list
 set listchars=tab:>-,trail:⋅,nbsp:⋅
 
 " Extremely fast timeout for escape codes
 set timeoutlen=1000 ttimeoutlen=0
 
-" Highlight serch results
+" Highlight search results
 set hlsearch
 set incsearch
 nmap \/ :noh<CR>
 
 " Highlihgt can be really slow. Limit it for performance reasons
-set synmaxcol=160
+set synmaxcol=200
 
-" Maximize and restore windows
-map <F5> :set noequalalways winminheight=0 winheight=9999 helpheight=9999 winminwidth=0 winwidth=9999<CR>
-map <F6> :set winheight=1 winwidth=1 helpheight& equalalways <bar> :wincmd =<CR>
-imap <F5> <C-O><F5>
-imap <F6> <C-O><F6>
+" Use old regular expression engine
+set re=1
+
+" Macros
+nnoremap Q @@
+" set lazydraw
 
 " Disable proper keys
 nnoremap <up> <nop>
@@ -175,6 +178,19 @@ function! s:StripTrailingWhitespaces()
 endfunction
 command! StripTrailingWhitespaces call<SID>StripTrailingWhitespaces()
 
+" Maximize windows
+function! s:MaximizeSplit()
+  set noequalalways winminheight=0 winheight=9999 helpheight=9999 winminwidth=0 winwidth=9999
+endfunction
+command! MaximizeSplit call<SID>MaximizeSplit()
+
+" Normalize windows
+function! s:NormalizeSplit()
+  set winheight=1 winwidth=1 helpheight& equalalways
+  wincmd =
+endfunction
+command! NormalizeSplit call<SID>NormalizeSplit()
+
 " Highlight custom types
 autocmd BufRead,BufNewFile Gemfile*  set filetype=ruby
 autocmd BufRead,BufNewFile */nginx/* set filetype=nginx
@@ -194,7 +210,7 @@ let g:startify_custom_header = get(g:, 'startify_custom_header', [
   \'                                                  /____/   ',
   \'',
   \'                       Maintainer: https://github.com/sfate',
-  \'                                Version: 1.9.7 - 5 Jun 2016',
+  \'                               Version: 1.9.8 - 23 Jun 2019',
   \'',
   \ ])
 let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
@@ -230,6 +246,20 @@ augroup startify_map
   autocmd FileType startify nnoremap <buffer><F2> <Nop>
   autocmd FileType startify call <SID>startify_mapping()
 augroup END
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => matchup
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("gui_running")
+  let g:matchup_enabled = 0
+else
+  let g:matchup_enabled = 1
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => rainbow
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rainbow_active = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
