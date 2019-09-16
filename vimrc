@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/sfate
 " Source: https://github.com/sfate/dotvimmy
-" Version: 1.9.8 - 23 Jan 2019
+" Version: 1.9.8 - 16 Sep 2019
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will override your existing vim setup
@@ -33,6 +33,7 @@ Plugin 'mhinz/vim-startify'
 Plugin 'wincent/ferret'
 Plugin 'luochen1990/rainbow'
 Plugin 'andymass/vim-matchup'
+Plugin 'dense-analysis/ale'
 " Colors
 Plugin 'morhetz/gruvbox'
 call vundle#end()
@@ -210,7 +211,7 @@ let g:startify_custom_header = get(g:, 'startify_custom_header', [
   \'                                                  /____/   ',
   \'',
   \'                       Maintainer: https://github.com/sfate',
-  \'                               Version: 1.9.8 - 23 Jun 2019',
+  \'                               Version: 1.9.8 - 16 Sep 2019',
   \'',
   \ ])
 let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
@@ -260,6 +261,16 @@ endif
 " => rainbow
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ale
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_filetype_changed = 1
+let g:ale_sign_column_always = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
