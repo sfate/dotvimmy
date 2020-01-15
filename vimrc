@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/sfate
 " Source: https://github.com/sfate/dotvimmy
-" Version: 1.9.8 - 16 Sep 2019
+" Last_Edit: 15/Jan/2020
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will override your existing vim setup
@@ -26,7 +26,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'vim-scripts/tComment'
 Plugin 'itchyny/lightline.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Yggdroot/indentLine'
 Plugin 'haya14busa/vim-auto-programming'
 Plugin 'bogado/file-line'
 Plugin 'mhinz/vim-startify'
@@ -120,6 +120,10 @@ set synmaxcol=200
 " Use old regular expression engine
 set re=1
 
+" Undo history
+set undofile
+set undodir=~/.vim/undo/
+
 " Macros
 nnoremap Q @@
 " set lazydraw
@@ -211,28 +215,33 @@ let g:startify_custom_header = get(g:, 'startify_custom_header', [
   \'                                                  /____/   ',
   \'',
   \'                       Maintainer: https://github.com/sfate',
-  \'                               Version: 1.9.8 - 16 Sep 2019',
+  \'                        Last Edit:              15/Jan/2020',
   \'',
   \ ])
 let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
-let g:startify_files_number = 6
+let g:startify_enable_special         = 0
+let g:startify_files_number           = 10
+let g:startify_relative_path          = 1
+let g:startify_change_to_dir          = 0
+let g:startify_session_autoload       = 1
+let g:startify_session_persistence    = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_update_oldfiles        = 1
 let g:startify_list_order = [
-            \ ['   My most recently used files in the current directory:'],
-            \ 'dir',
-            \ ['   My most recently used files:'],
+            \ ['   Recent files:'],
             \ 'files',
-            \ ['   These are my sessions:'],
+            \ ['   Recent files within current directory:'],
+            \ 'dir',
+            \ ['   Sessions:'],
             \ 'sessions',
-            \ ['   These are my bookmarks:'],
+            \ ['   Bookmarks:'],
             \ 'bookmarks',
             \ ]
-"let g:startify_bookmarks = [ {'c': '~/.vimrc'}, '~/.zshrc' ]
-let g:startify_update_oldfiles = 1
-let g:startify_session_autoload = 1
-let g:startify_session_persistence = 1
-"let g:startify_session_delete_buffers = 0
-let g:startify_change_to_dir = 0
-"let g:startify_change_to_vcs_root = 0  " vim-rooter has same feature
+let g:startify_bookmarks = [
+            \ {'v': '~/.vimrc'},
+            \ {'b': '~/.bashrc'},
+            \ {'t': '~/.tmux.conf'}
+            \ ]
 let g:startify_skiplist = [
             \ 'COMMIT_EDITMSG',
             \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
@@ -263,14 +272,20 @@ endif
 let g:rainbow_active = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => indentLine (:IndentLinesToggle)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indentLine_enabled = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ale
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed     = 0
+let g:ale_lint_on_insert_leave     = 1
+let g:ale_lint_on_enter            = 1
+let g:ale_lint_on_save             = 1
 let g:ale_lint_on_filetype_changed = 1
-let g:ale_sign_column_always = 1
+let g:ale_sign_column_always       = 1
+let g:ale_set_loclist              = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
