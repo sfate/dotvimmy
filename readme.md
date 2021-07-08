@@ -36,4 +36,4 @@ All deployed versions and old configurations are stored at `~/.vimmy`.
 |disable *arrows*, *home* and *end* buttons|
 |and so on.. for more info take a look at [vimrc](https://github.com/sfate/dotvimmy/blob/master/vimrc) file ;)|
 
-### Last Edit: 15/Jan/2020
+### Last Edit: 08/Jul/2021

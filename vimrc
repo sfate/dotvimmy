@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/sfate
 " Source: https://github.com/sfate/dotvimmy
-" Last_Edit: 15/Jan/2020
+" Last_Edit: 08/Jul/2021
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will override your existing vim setup
@@ -17,7 +17,7 @@ set encoding=utf-8
 set nocompatible
 filetype off
 
-" VundleVim init
+" Open VundleVim init
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -26,9 +26,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'vim-scripts/tComment'
 Plugin 'itchyny/lightline.vim'
-Plugin 'Yggdroot/indentLine'
 Plugin 'haya14busa/vim-auto-programming'
-Plugin 'bogado/file-line'
 Plugin 'mhinz/vim-startify'
 Plugin 'wincent/ferret'
 Plugin 'luochen1990/rainbow'
@@ -36,6 +34,8 @@ Plugin 'andymass/vim-matchup'
 Plugin 'dense-analysis/ale'
 " Colors
 Plugin 'morhetz/gruvbox'
+
+" Close VundleVim init
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -87,6 +87,10 @@ set wildmenu
 set wildignore=*~,.svn*,*.bak,*.swp,*.swo
 set wildmode=list:longest,full
 
+" Tweaks netrw browse
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_list_hide=netrw_gitignore#Hide()
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -102,6 +106,9 @@ set expandtab
 " Highligth current line
 set cursorline
 
+" Show command
+set showcmd
+
 " Display tabs and trailing spaces
 set list
 set listchars=tab:>-,trail:⋅,nbsp:⋅
@@ -114,11 +121,14 @@ set hlsearch
 set incsearch
 nmap \/ :noh<CR>
 
+" Search down into subfolders. Provides tab-completion for all file-related tasks
+set path+=**
+
 " Highlihgt can be really slow. Limit it for performance reasons
 set synmaxcol=200
 
 " Use old regular expression engine
-set re=1
+set re=0
 
 " Undo history
 set undofile
@@ -135,9 +145,6 @@ nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap <home> <nop>
 nnoremap <end> <nop>
-
-" Force override RO-files with W
-command W silent execute 'w !sudo tee % > /dev/null' | :e! | syn on
 
 " Call autoprogramming plugin by <C-x><C-u>
 if filereadable(g:vundle#bundle_dir . '/vim-auto-programming/autoload/autoprogramming.vim')
@@ -169,19 +176,6 @@ else
   set statusline+=\ %P    "percent through file
 endif
 set laststatus=2
-
-" Remove all trailing whitespaces
-function! s:StripTrailingWhitespaces()
-  if search('\s\+$', 'n')
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    let @/=_s
-    call cursor(l, c)
-  endif
-endfunction
-command! StripTrailingWhitespaces call<SID>StripTrailingWhitespaces()
 
 " Maximize windows
 function! s:MaximizeSplit()
@@ -247,15 +241,6 @@ let g:startify_skiplist = [
             \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
             \ 'bundle/.*/doc',
             \ ]
-fu! <SID>startify_mapping()
-  if getcwd() == $VIM || getcwd() == expand('~')
-    nnoremap <silent><buffer> <c-p> :<c-u>CtrlP ~\DotFiles<cr>
-  endif
-endf
-augroup startify_map
-  autocmd FileType startify nnoremap <buffer><F2> <Nop>
-  autocmd FileType startify call <SID>startify_mapping()
-augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => matchup
@@ -286,9 +271,26 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_filetype_changed = 1
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
+let g:ale_ruby_rubocop_executable = 'bundle'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove trailing spaces at file save
-" autocmd BufWritePre * call<SID>StripTrailingWhitespaces()
+" DISABILITY_REASON: Use no automatic file change!
+"" Remove trailing spaces on a file save
+"" function! s:StripTrailingWhitespaces()
+""   if search('\s\+$', 'n')
+""     let _s=@/
+""     let l = line(".")
+""     let c = col(".")
+""     %s/\s\+$//e
+""     let @/=_s
+""     call cursor(l, c)
+""   endif
+"" endfunction
+"" command! StripTrailingWhitespaces call<SID>StripTrailingWhitespaces()
+"" autocmd BufWritePre * call<SID>StripTrailingWhitespaces()
+" DISABILITY_REASON: Use no write with root privileges
+"" Force override RO-files with W
+"" command W silent execute 'w !sudo tee % > /dev/null' | :e! | syn on
+
