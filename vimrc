@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/sfate
 " Source: https://github.com/sfate/dotvimmy
-" Last_Edit: 08/Jul/2021
+" Last_Edit: 26/May/2022
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will override your existing vim setup
@@ -17,26 +17,32 @@ set encoding=utf-8
 set nocompatible
 filetype off
 
-" Open VundleVim init
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
 
-" Plugins
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'vim-scripts/tComment'
-Plugin 'itchyny/lightline.vim'
-Plugin 'haya14busa/vim-auto-programming'
-Plugin 'mhinz/vim-startify'
-Plugin 'wincent/ferret'
-Plugin 'luochen1990/rainbow'
-Plugin 'andymass/vim-matchup'
-Plugin 'dense-analysis/ale'
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+" Plugins (via vim-plug)
+call plug#begin('~/.vim/plugged')
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-scripts/tComment'
+Plug 'itchyny/lightline.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'sfate/vim-auto-programming', { 'branch': 'neovim' }
+Plug 'mhinz/vim-startify'
+Plug 'wincent/ferret'
+Plug 'luochen1990/rainbow'
+Plug 'andymass/vim-matchup'
+Plug 'dense-analysis/ale'
 " Colors
-Plugin 'morhetz/gruvbox'
-
-" Close VundleVim init
-call vundle#end()
+Plug 'morhetz/gruvbox'
+call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -146,13 +152,16 @@ nnoremap <right> <nop>
 nnoremap <home> <nop>
 nnoremap <end> <nop>
 
+" jk ESC
+inoremap jk <Esc>
+
 " Call autoprogramming plugin by <C-x><C-u>
-if filereadable(g:vundle#bundle_dir . '/vim-auto-programming/autoload/autoprogramming.vim')
+if filereadable(g:plugs['vim-auto-programming']['dir'] . '/autoload/autoprogramming.vim')
   set completefunc=autoprogramming#complete
 endif
 
 " Use colorshemes for tty and pty
-if filereadable(g:vundle#bundle_dir . '/gruvbox/colors/gruvbox.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256") || has("gui_running")
+if filereadable(g:plugs['gruvbox']['dir'] . '/colors/gruvbox.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256") || has("gui_running")
   set noshowmode
   set t_Co=256
   set bg=dark
@@ -209,7 +218,7 @@ let g:startify_custom_header = get(g:, 'startify_custom_header', [
   \'                                                  /____/   ',
   \'',
   \'                       Maintainer: https://github.com/sfate',
-  \'                        Last Edit:              15/Jan/2020',
+  \'                        Last Edit:              26/May/2022',
   \'',
   \ ])
 let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
@@ -293,4 +302,3 @@ let g:ale_ruby_rubocop_executable = 'bundle'
 " DISABILITY_REASON: Use no write with root privileges
 "" Force override RO-files with W
 "" command W silent execute 'w !sudo tee % > /dev/null' | :e! | syn on
-

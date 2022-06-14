@@ -1,6 +1,6 @@
 # Maintainer: https://github.com/sfate
 # Source: https://github.com/sfate/dotvimmy
-# Last_Edit: 08/Jul/2021
+# Last_Edit: 26/May/2022
 #        __      __        _
 #   ____/ /___  / /__   __(_)___ ___  ____ ___  __  __
 #  / __  / __ \/ __/ | / / / __ `__ \/ __ `__ \/ / / /
@@ -44,11 +44,8 @@ echo "[*] Link folders"
 (ln -s $current_release_dir/vimrc $HOME/.vimrc)
 (ln -s $current_release_dir/vim   $HOME/.vim)
 
-echo "[*] Clone vundle plugin"
-(git clone https://github.com/VundleVim/Vundle.vim.git $current_release_dir/vim/bundle/Vundle.vim --quiet) &> /dev/null
-
 echo "[*] Installing plugins"
-(vim -u NONE -S ~/.vimrc +PluginInstall! +qall) < /dev/tty &> /dev/null
+(vim +qall) < /dev/tty &> /dev/null
 
 echo "[*] Clean up"
 old_releases=$(ls -td $releases_dir/* | tail -n +6)
