@@ -40,6 +40,7 @@ Plug 'wincent/ferret'
 Plug 'luochen1990/rainbow'
 Plug 'andymass/vim-matchup'
 Plug 'dense-analysis/ale'
+Plug 'dhruvasagar/vim-zoom'
 " Colors
 Plug 'morhetz/gruvbox'
 call plug#end()
@@ -156,34 +157,17 @@ nnoremap <end> <nop>
 inoremap jk <Esc>
 
 " Call autoprogramming plugin by <C-x><C-u>
-if filereadable(g:plugs['vim-auto-programming']['dir'] . '/autoload/autoprogramming.vim')
-  set completefunc=autoprogramming#complete
-endif
+set completefunc=autoprogramming#complete
 
 " Use colorshemes for tty and pty
-if filereadable(g:plugs['gruvbox']['dir'] . '/colors/gruvbox.vim') && ($TERM =~# "xterm-256" || $TERM =~# "screen-256") || has("gui_running")
-  set noshowmode
-  set t_Co=256
-  set bg=dark
-  let g:gruvbox_italic=0
-  colorscheme gruvbox
-  let g:lightline = {
-    \ 'colorscheme': 'gruvbox'
-  \ }
-else
-  set background=dark
-  set t_Co=8
-  colorscheme slate
-  " Statusline setup
-  set statusline=%{'['.tabpagenr().']'} "current tab
-  set statusline+=\ %f       "tail of the filename
-  set statusline +=%2*%m%*   "modified flag
-  " Line of right setup
-  set statusline+=%=      "left/right separator
-  set statusline+=%c,     "cursor column
-  set statusline+=%l/%L   "cursor line/total lines
-  set statusline+=\ %P    "percent through file
-endif
+set noshowmode
+set t_Co=256
+set bg=dark
+let g:gruvbox_italic=0
+colorscheme gruvbox
+let g:lightline = {
+  \ 'colorscheme': 'gruvbox'
+\ }
 set laststatus=2
 
 " Maximize windows
