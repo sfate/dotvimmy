@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/sfate
 " Source: https://github.com/sfate/dotvimmy
-" Last_Edit: 26/May/2022
+" Last_Edit: 14/Jun/2022
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will override your existing vim setup
@@ -33,7 +33,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/tComment'
 Plug 'itchyny/lightline.vim'
-Plug 'Yggdroot/indentLine'
 Plug 'sfate/vim-auto-programming', { 'branch': 'neovim' }
 Plug 'mhinz/vim-startify'
 Plug 'wincent/ferret'
@@ -149,12 +148,16 @@ nnoremap Q @@
 " set lazydraw
 
 " Disable proper keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-nnoremap <home> <nop>
-nnoremap <end> <nop>
+inoremap <up>     <nop>
+inoremap <down>   <nop>
+inoremap <left>   <nop>
+inoremap <right>  <nop>
+inoremap <esc>    <nop>
+noremap  <up>     <nop>
+noremap  <down>   <nop>
+noremap  <left>   <nop>
+noremap  <right>  <nop>
+noremap  <esc>    <nop>
 
 " jk ESC
 inoremap jk <Esc>
@@ -168,9 +171,6 @@ set t_Co=256
 set bg=dark
 let g:gruvbox_italic=0
 colorscheme gruvbox
-let g:lightline = {
-  \ 'colorscheme': 'gruvbox'
-\ }
 set laststatus=2
 
 " Maximize windows
@@ -205,7 +205,7 @@ let g:startify_custom_header = get(g:, 'startify_custom_header', [
   \'                                                  /____/   ',
   \'',
   \'                       Maintainer: https://github.com/sfate',
-  \'                        Last Edit:              26/May/2022',
+  \'                        Last Edit:              14/Jun/2022',
   \'',
   \ ])
 let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
@@ -268,6 +268,37 @@ let g:ale_lint_on_filetype_changed = 1
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
 let g:ale_ruby_rubocop_executable = 'bundle'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => zoom
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:zoom#statustext = '*Z'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => lightline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:lightline = {
+  \ 'colorscheme': 'gruvbox',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'readonly', 'filename', 'modified', 'zoom' ] ],
+  \   'right': [ [ 'lineinfo' ],
+  \              [ 'percent' ],
+  \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+  \ },
+  \ 'tabline': {
+  \   'right': [['close']]
+  \ },
+  \ 'component_function': {
+  \   'zoom': 'zoom#statusline',
+  \ }
+\ }
+
+let g:lightline#bufferline#enable_devicons  = 1
+let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#show_number      = 1
+let g:lightline#bufferline#unicode_symbols  = 1
+let g:lightline#trailing_whitespace#indicator = '•'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!

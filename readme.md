@@ -8,18 +8,17 @@
 All deployed versions and old configurations are stored at `~/.vimmy`.
 
 ### Plugins:
-* [Vundle](https://github.com/gmarik/vundle)
+* [VimPlug](https://github.com/junegunn/vim-plug)
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
 * [tComment](https://github.com/vim-scripts/tComment)
 * [lightline](https://github.com/itchyny/lightline.vim)
-* [indentLine](https://github.com/Yggdroot/indentLine)
-* [vim-auto-programming](https://github.com/haya14busa/vim-auto-programming)
-* [file-line](https://github.com/bogado/file-line)
+* [vim-auto-programming](https://github.com/sfate/vim-auto-programming)
 * [vim-startify](https://github.com/mhinz/vim-startify)
 * [ferret](https://github.com/wincent/ferret)
 * [rainbow](https://github.com/luochen1990/rainbow)
 * [vim-matchup](https://github.com/andymass/vim-matchup)
 * [ale](https://github.com/dense-analysis/ale)
+* [vim-zoom](https://github.com/dhruvasagar/vim-zoom)
 
 ### Colorscheme - [gruvbox](https://github.com/morhetz/gruvbox)
 ![Colorscheme preview](/preview.png)
@@ -30,10 +29,9 @@ All deployed versions and old configurations are stored at `~/.vimmy`.
 |tab replaced with 2 spaces|
 |disabled swap files write|
 |reload file on the fly|
-|support 8-color terminals|
 |current line highlight|
 |show tabs and trailing whitespaces|
-|disable *arrows*, *home* and *end* buttons|
+|disable *arrows*, *home*, *end*, *esc* buttons|
 |and so on.. for more info take a look at [vimrc](https://github.com/sfate/dotvimmy/blob/master/vimrc) file ;)|
 
-### Last Edit: 08/Jul/2021
+### Last Edit: 14/Jun/2022
