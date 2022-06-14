@@ -45,7 +45,7 @@ echo "[*] Link folders"
 (ln -s $current_release_dir/vim   $HOME/.vim)
 
 echo "[*] Installing plugins"
-(vim +qall) < /dev/tty &> /dev/null
+vim +'PlugInstall --sync' +qall &> /dev/null
 
 echo "[*] Clean up"
 old_releases=$(ls -td $releases_dir/* | tail -n +6)
