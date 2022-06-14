@@ -141,6 +141,9 @@ set re=0
 set undofile
 set undodir=~/.vim/undo/
 
+" Disable complete to search through tags
+set complete-=t
+
 " Macros
 nnoremap Q @@
 " set lazydraw
