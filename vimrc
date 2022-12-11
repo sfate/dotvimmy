@@ -148,16 +148,12 @@ nnoremap Q @@
 " set lazydraw
 
 " Disable proper keys
-inoremap <up>     <nop>
-inoremap <down>   <nop>
-inoremap <left>   <nop>
-inoremap <right>  <nop>
-inoremap <esc>    <nop>
-noremap  <up>     <nop>
-noremap  <down>   <nop>
-noremap  <left>   <nop>
-noremap  <right>  <nop>
-noremap  <esc>    <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+nnoremap <home> <nop>
+nnoremap <end> <nop>
 
 " jk ESC
 inoremap jk <Esc>
