@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/sfate
 " Source: https://github.com/sfate/dotvimmy
-" Last_Edit: 14/Jun/2022
+" Last_Edit: 17/Jan/2023
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will override your existing vim setup
@@ -31,16 +31,20 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 " Plugins (via vim-plug)
 call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
+Plug 'govim/govim'
 Plug 'vim-scripts/tComment'
-Plug 'itchyny/lightline.vim'
 Plug 'sfate/vim-auto-programming', { 'branch': 'neovim' }
-Plug 'mhinz/vim-startify'
-Plug 'wincent/ferret'
+Plug 'dense-analysis/ale'
 Plug 'luochen1990/rainbow'
 Plug 'andymass/vim-matchup'
-Plug 'dense-analysis/ale'
-Plug 'dhruvasagar/vim-zoom'
-" Colors
+" Marks
+Plug 'kshenoy/vim-signature'
+" Search
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" UI
+Plug 'mhinz/vim-startify'
+Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -125,7 +129,7 @@ set timeoutlen=1000 ttimeoutlen=0
 " Highlight search results
 set hlsearch
 set incsearch
-nmap \/ :noh<CR>
+nmap <Leader>/ :noh<CR>
 
 " Search down into subfolders. Provides tab-completion for all file-related tasks
 set path+=**
@@ -148,25 +152,33 @@ nnoremap Q @@
 " set lazydraw
 
 " Disable proper keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-nnoremap <home> <nop>
-nnoremap <end> <nop>
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP>
+nnoremap <Up>    <NOP>
+nnoremap <Down>  <NOP>
+nnoremap <Left>  <NOP>
+nnoremap <Right> <NOP>
+nnoremap <Home>  <NOP>
+nnoremap <End>   <NOP>
 
 " jk ESC
-inoremap jk <Esc>
+inoremap <nowait> jj <Esc>
 
 " Call autoprogramming plugin by <C-x><C-u>
 set completefunc=autoprogramming#complete
 
 " Use colorshemes for tty and pty
 set noshowmode
-set t_Co=256
 set bg=dark
 let g:gruvbox_italic=0
+":h xterm-true-color
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 colorscheme gruvbox
+set t_Co=256
+set termguicolors
 set laststatus=2
 
 " Maximize windows
@@ -186,6 +198,15 @@ command! NormalizeSplit call<SID>NormalizeSplit()
 autocmd BufRead,BufNewFile Gemfile*  set filetype=ruby
 autocmd BufRead,BufNewFile */nginx/* set filetype=nginx
 
+" Source Vim configuration file and install plugins
+nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
+
+" Save file on exit to normal mode
+augroup AUTOSAVE
+  au!
+  autocmd InsertLeave,TextChanged,FocusLost * silent! write
+augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -201,7 +222,7 @@ let g:startify_custom_header = get(g:, 'startify_custom_header', [
   \'                                                  /____/   ',
   \'',
   \'                       Maintainer: https://github.com/sfate',
-  \'                        Last Edit:              14/Jun/2022',
+  \'                        Last Edit:              17/Jan/2023',
   \'',
   \ ])
 let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
@@ -295,6 +316,26 @@ let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline#bufferline#show_number      = 1
 let g:lightline#bufferline#unicode_symbols  = 1
 let g:lightline#trailing_whitespace#indicator = '•'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-go
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:go_debug_windows = {
+  \ 'vars':  'rightbelow 60vnew',
+  \ 'stack': 'rightbelow 10new',
+\ }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => fzf.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>t        :GFiles<CR>
+nnoremap <Leader><leader> :Files<CR>
+nnoremap <Leader>C        :Colors<CR>
+nnoremap <Leader><CR>     :Buffers<CR>
+nnoremap <Leader>w        :Windows<CR>
+nnoremap <Leader>s        :GFiles?<CR>
+nnoremap <Leader>f        :Ag<CR>
+nnoremap <Leader>*        :Ag <C-R><C-W><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
