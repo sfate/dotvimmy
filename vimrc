@@ -45,7 +45,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " UI
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -173,7 +173,7 @@ set completefunc=autoprogramming#complete
 set noshowmode
 set bg=dark
 let g:gruvbox_italic=0
-":h xterm-true-color
+" :h xterm-true-color
 let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
 let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 colorscheme gruvbox
@@ -305,9 +305,6 @@ let g:lightline = {
   \ },
   \ 'tabline': {
   \   'right': [['close']]
-  \ },
-  \ 'component_function': {
-  \   'zoom': 'zoom#statusline',
   \ }
 \ }
 
@@ -328,6 +325,7 @@ let g:go_debug_windows = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fzf.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $BAT_THEME='gruvbox-dark'
 nnoremap <Leader>t        :GFiles<CR>
 nnoremap <Leader><leader> :Files<CR>
 nnoremap <Leader>C        :Colors<CR>
