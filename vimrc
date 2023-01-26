@@ -31,12 +31,11 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 " Plugins (via vim-plug)
 call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
-Plug 'govim/govim'
 Plug 'vim-scripts/tComment'
-Plug 'sfate/vim-auto-programming', { 'branch': 'neovim' }
 Plug 'dense-analysis/ale'
 Plug 'luochen1990/rainbow'
-Plug 'andymass/vim-matchup'
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'govim/govim'
 " Marks
 Plug 'kshenoy/vim-signature'
 " Search
@@ -204,7 +203,7 @@ nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
 " Save file on exit to normal mode
 augroup AUTOSAVE
   au!
-  autocmd InsertLeave,TextChanged,FocusLost * silent! write
+  autocmd InsertLeave,TextChanged,FocusLost * if &readonly==0 && filereadable(bufname('%')) | silent :w | endif
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -256,23 +255,9 @@ let g:startify_skiplist = [
             \ ]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => matchup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("gui_running")
-  let g:matchup_enabled = 0
-else
-  let g:matchup_enabled = 1
-endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => rainbow
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => indentLine (:IndentLinesToggle)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indentLine_enabled = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ale
@@ -285,11 +270,6 @@ let g:ale_lint_on_filetype_changed = 1
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
 let g:ale_ruby_rubocop_executable = 'bundle'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => zoom
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:zoom#statustext = '*Z'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
