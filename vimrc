@@ -305,6 +305,12 @@ let g:go_debug_windows = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fzf.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+command! -bang -nargs=* CustomBLines
+    \ call fzf#vim#grep(
+    \   'rg --with-filename --column --line-number --no-heading --smart-case . '.fnameescape(expand('%:p')), 1,
+    \   fzf#vim#with_preview({'options': '--layout reverse --query '.shellescape(<q-args>).' --with-nth=4.. --delimiter=":"'}, 'right:50%'))
+    " \   fzf#vim#with_preview({'options': '--layout reverse  --with-nth=-1.. --delimiter="/"'}, 'right:50%'))
+
 let $BAT_THEME='gruvbox-dark'
 nnoremap <Leader>t        :GFiles<CR>
 nnoremap <Leader><leader> :Files<CR>
@@ -314,6 +320,8 @@ nnoremap <Leader>w        :Windows<CR>
 nnoremap <Leader>s        :GFiles?<CR>
 nnoremap <Leader>f        :Ag<CR>
 nnoremap <Leader>*        :Ag <C-R><C-W><CR>
+nnoremap /                :CustomBLines<CR>
+nnoremap #                :CustomBLines <C-R><C-W><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
