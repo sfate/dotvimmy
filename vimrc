@@ -45,6 +45,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
 Plug 'gruvbox-community/gruvbox'
+" Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'ap/vim-css-color'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -162,20 +164,29 @@ nnoremap <Right> <NOP>
 nnoremap <Home>  <NOP>
 nnoremap <End>   <NOP>
 
-" jk ESC
+" jj & jk ESC
 inoremap <nowait> jj <Esc>
+inoremap <nowait> jk <Esc>
 
-" Call autoprogramming plugin by <C-x><C-u>
-set completefunc=autoprogramming#complete
+" Fast saving
+nnoremap <Leader>w :w!<CR>
+nnoremap <silent> <Leader>q :q!<CR>
+
+" Center the screen
+nnoremap <Space> zz
+
+" Do not show stupid q: window
+map q: <NOP>
 
 " Use colorshemes for tty and pty
 set noshowmode
 set bg=dark
 let g:gruvbox_italic=0
+let g:dark_contrast="hard"
+let g:light_contrast="hard"
 " :h xterm-true-color
 let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
 let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
-colorscheme gruvbox
 set t_Co=256
 set termguicolors
 set laststatus=2
@@ -199,12 +210,6 @@ autocmd BufRead,BufNewFile */nginx/* set filetype=nginx
 
 " Source Vim configuration file and install plugins
 nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
-
-" Save file on exit to normal mode
-augroup AUTOSAVE
-  au!
-  autocmd InsertLeave,TextChanged,FocusLost * if &readonly==0 && filereadable(bufname('%')) | silent :w | endif
-augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-startify
@@ -278,7 +283,7 @@ let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'readonly', 'filename', 'modified', 'zoom' ] ],
+  \             [ 'readonly', 'filename', 'modified' ] ],
   \   'right': [ [ 'lineinfo' ],
   \              [ 'percent' ],
   \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
@@ -293,6 +298,33 @@ let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline#bufferline#show_number      = 1
 let g:lightline#bufferline#unicode_symbols  = 1
 let g:lightline#trailing_whitespace#indicator = '•'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => gruvbox + lightline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ChangeBackground changes the background mode based on macOS's `Appearance`
+" setting. We also refresh the statusline colors to reflect the new mode.
+function! s:SetColorscheme()
+  if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
+    set background=dark   " for dark version of theme
+  else
+    set background=light  " for light version of theme
+  endif
+
+  colorscheme gruvbox
+
+  runtime plugged/gruvbox/autoload/lightline/colorscheme/gruvbox.vim
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+  "
+  " let command = ["bash", "-c", "tmux source-file ~/.tmux.conf"]
+  " call job_start(command, {})
+endfunction
+command! SetColorscheme call<SID>SetColorscheme()
+
+" Initialize colorscheme
+call s:SetColorscheme()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-go
@@ -314,20 +346,20 @@ command! -bang -nargs=* CustomBLines
 let $BAT_THEME='gruvbox-dark'
 nnoremap <Leader>t        :GFiles<CR>
 nnoremap <Leader><leader> :Files<CR>
-nnoremap <Leader>C        :Colors<CR>
+" nnoremap <Leader>C        :Colors<CR>
 nnoremap <Leader><CR>     :Buffers<CR>
-nnoremap <Leader>w        :Windows<CR>
+" nnoremap <Leader>w        :Windows<CR>
 nnoremap <Leader>s        :GFiles?<CR>
 nnoremap <Leader>f        :Ag<CR>
 nnoremap <Leader>*        :Ag <C-R><C-W><CR>
-nnoremap /                :CustomBLines<CR>
-nnoremap #                :CustomBLines <C-R><C-W><CR>
+" nnoremap /                :CustomBLines<CR>
+" nnoremap #                :CustomBLines <C-R><C-W><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DISABILITY_REASON: Use no automatic file change!
-"" Remove trailing spaces on a file save
+""" Remove trailing spaces on a file save
 "" function! s:StripTrailingWhitespaces()
 ""   if search('\s\+$', 'n')
 ""     let _s=@/
@@ -341,5 +373,11 @@ nnoremap #                :CustomBLines <C-R><C-W><CR>
 "" command! StripTrailingWhitespaces call<SID>StripTrailingWhitespaces()
 "" autocmd BufWritePre * call<SID>StripTrailingWhitespaces()
 " DISABILITY_REASON: Use no write with root privileges
-"" Force override RO-files with W
+""" Force override RO-files with W
 "" command W silent execute 'w !sudo tee % > /dev/null' | :e! | syn on
+" DISABILITY_REASON: Use no automatic write (non proper file reload is in place)
+""" Save file on exit to normal mode
+"" augroup AUTOSAVE
+""   au!
+""   autocmd InsertLeave,TextChanged,FocusLost * if &readonly==0 && filereadable(bufname('%')) | silent :w | endif
+"" augroup END
