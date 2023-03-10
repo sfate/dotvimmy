@@ -12,16 +12,16 @@ All deployed versions and old configurations are stored at `~/.vimmy`.
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
 * [govim](https://github.com/govim/govim)
 * [tComment](https://github.com/vim-scripts/tComment)
-* [vim-auto-programming](https://github.com/sfate/vim-auto-programming)
 * [ale](https://github.com/dense-analysis/ale)
 * [rainbow](https://github.com/luochen1990/rainbow)
-* [vim-matchup](https://github.com/andymass/vim-matchup)
 * [vim-signature](https://github.com/kshenoy/vim-signature)
 * [fzf.vim](https://github.com/junegunn/fzf.vim)
 * [vim-startify](https://github.com/mhinz/vim-startify)
 * [lightline](https://github.com/itchyny/lightline.vim)
+* [vim-signature](https://github.com/kshenoy/vim-signature)
+* [vim-css-color](https://github.com/ap/vim-css-color)
 
-### Colorscheme - [gruvbox](https://github.com/morhetz/gruvbox)
+### Colorscheme - [gruvbox](https://github.com/gruvbox-community/gruvbox)
 ![Colorscheme preview](/preview.png)
 
 |Amendments|
@@ -39,4 +39,4 @@ All deployed versions and old configurations are stored at `~/.vimmy`.
 |fix colorscheme for xterm appearance|
 |and so on.. for more info take a look at [vimrc](https://github.com/sfate/dotvimmy/blob/master/vimrc) file ;)|
 
-### Last Edit: 17/Jan/2023
+### Last Edit: 10/Mar/2023

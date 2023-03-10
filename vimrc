@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/sfate
 " Source: https://github.com/sfate/dotvimmy
-" Last_Edit: 17/Jan/2023
+" Last_Edit: 10/Mar/2023
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will override your existing vim setup
@@ -30,11 +30,10 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 " Plugins (via vim-plug)
 call plug#begin('~/.vim/plugged')
+" Code
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/tComment'
 Plug 'dense-analysis/ale'
-Plug 'luochen1990/rainbow'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'govim/govim'
 " Marks
 Plug 'kshenoy/vim-signature'
@@ -42,10 +41,10 @@ Plug 'kshenoy/vim-signature'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " UI
+Plug 'luochen1990/rainbow'
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
 Plug 'gruvbox-community/gruvbox'
-" Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'ap/vim-css-color'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -72,9 +71,6 @@ filetype plugin indent on
 
 " Enable syntax highlight
 syntax on
-
-" Enable paste mode for pasting from outside
-set pastetoggle=<F2>
 
 " Highlight pair brackets
 set showmatch
@@ -178,6 +174,20 @@ nnoremap <Space> zz
 " Do not show stupid q: window
 map q: <NOP>
 
+" Enable paste mode for pasting from outside
+" Do not use buggy pastetoggle
+function! s:TogglePaste()
+  if(&paste == 0)
+    set paste
+    echo "Paste Mode Enabled"
+  else
+    set nopaste
+    echo "Paste Mode Disabled"
+  endif
+endfunction
+"
+map <leader>p :call<SID>TogglePaste()<CR>
+
 " Use colorshemes for tty and pty
 set noshowmode
 set bg=dark
@@ -209,7 +219,7 @@ autocmd BufRead,BufNewFile Gemfile*  set filetype=ruby
 autocmd BufRead,BufNewFile */nginx/* set filetype=nginx
 
 " Source Vim configuration file and install plugins
-nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
+nnoremap <silent><Leader>1 :source ~/.vimrc \| :PlugInstall<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-startify
@@ -226,7 +236,7 @@ let g:startify_custom_header = get(g:, 'startify_custom_header', [
   \'                                                  /____/   ',
   \'',
   \'                       Maintainer: https://github.com/sfate',
-  \'                        Last Edit:              17/Jan/2023',
+  \'                        Last Edit:              10/Mar/2023',
   \'',
   \ ])
 let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
@@ -302,21 +312,30 @@ let g:lightline#trailing_whitespace#indicator = '•'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gruvbox + lightline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ChangeBackground changes the background mode based on macOS's `Appearance`
-" setting. We also refresh the statusline colors to reflect the new mode.
+" ChangeBackground changes the background mode based on macOS's `Appearance` setting.
+" Also refreshes statusline and bat colors to reflect to the new mode.
 function! s:SetColorscheme()
   if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
     set background=dark   " for dark version of theme
+    let $BAT_THEME='gruvbox-dark'
   else
     set background=light  " for light version of theme
+    let $BAT_THEME='gruvbox-light'
   endif
 
+  " Actuall set colorscheme
   colorscheme gruvbox
 
+  " Reload statusline
   runtime plugged/gruvbox/autoload/lightline/colorscheme/gruvbox.vim
   call lightline#init()
   call lightline#colorscheme()
   call lightline#update()
+
+  " Reload tmux conf
+  "
+  " Disabled: Currently replaced with outside script which reloads tmux conf and
+  " triggers this function per each opened vim session in tmux
   "
   " let command = ["bash", "-c", "tmux source-file ~/.tmux.conf"]
   " call job_start(command, {})
@@ -341,17 +360,20 @@ command! -bang -nargs=* CustomBLines
     \ call fzf#vim#grep(
     \   'rg --with-filename --column --line-number --no-heading --smart-case . '.fnameescape(expand('%:p')), 1,
     \   fzf#vim#with_preview({'options': '--layout reverse --query '.shellescape(<q-args>).' --with-nth=4.. --delimiter=":"'}, 'right:50%'))
-    " \   fzf#vim#with_preview({'options': '--layout reverse  --with-nth=-1.. --delimiter="/"'}, 'right:50%'))
 
-let $BAT_THEME='gruvbox-dark'
-nnoremap <Leader>t        :GFiles<CR>
-nnoremap <Leader><leader> :Files<CR>
-" nnoremap <Leader>C        :Colors<CR>
+" List opened buffers per session
 nnoremap <Leader><CR>     :Buffers<CR>
-" nnoremap <Leader>w        :Windows<CR>
+" Search file by name per repo
+nnoremap <Leader>t        :GFiles<CR>
+" Search file by name
+nnoremap <Leader><leader> :Files<CR>
+" Show repo changes status
 nnoremap <Leader>s        :GFiles?<CR>
+" Search through project / current folder (pwd)
 nnoremap <Leader>f        :Ag<CR>
 nnoremap <Leader>*        :Ag <C-R><C-W><CR>
+" Search through opened current buffer
+" Disabled: search nav is too clumsy
 " nnoremap /                :CustomBLines<CR>
 " nnoremap #                :CustomBLines <C-R><C-W><CR>
 
