@@ -1,7 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: https://github.com/sfate
 " Source: https://github.com/sfate/dotvimmy
-" Last_Edit: 10/Mar/2023
 "
 " How_to_Install_or_Update:
 "    !NOTE: This will override your existing vim setup
@@ -94,10 +93,6 @@ set wildmenu
 set wildignore=*~,.svn*,*.bak,*.swp,*.swo
 set wildmode=list:longest,full
 
-" Tweaks netrw browse
-let g:netrw_altv=1          " open splits to the right
-let g:netrw_list_hide=netrw_gitignore#Hide()
-
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -185,7 +180,7 @@ function! s:TogglePaste()
     echo "Paste Mode Disabled"
   endif
 endfunction
-"
+
 map <leader>p :call<SID>TogglePaste()<CR>
 
 " Use colorshemes for tty and pty
@@ -236,7 +231,6 @@ let g:startify_custom_header = get(g:, 'startify_custom_header', [
   \'                                                  /____/   ',
   \'',
   \'                       Maintainer: https://github.com/sfate',
-  \'                        Last Edit:              10/Mar/2023',
   \'',
   \ ])
 let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
@@ -378,6 +372,29 @@ nnoremap <Leader>*        :Ag <C-R><C-W><CR>
 " nnoremap #                :CustomBLines <C-R><C-W><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => netrw (buit-in)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Open splits to the right
+let g:netrw_altv=1
+" Show only non-gitignored files
+let g:netrw_list_hide=netrw_gitignore#Hide()
+" Always obtains fresh directory listings
+let g:netrw_fastbrowse = 0
+" Open files in: 1 - hsplit, 2 - vsplit, 3 - newtab, 4 - prevwindow
+let g:netrw_browse_split = 3
+" Copy directories recursively by default
+let g:netrw_localcopydircmd = 'cp -r'
+" Sets the size of window/drawer
+let g:netrw_winsize = 20
+" Wipe netrw buffer on leave
+augroup netrw
+  autocmd!
+  autocmd FileType netrw setlocal bufhidden=wipe
+augroup end
+" \n to explore (toggle)
+nnoremap <Leader>n :Lexplore<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DISABILITY_REASON: Use no automatic file change!
@@ -394,9 +411,11 @@ nnoremap <Leader>*        :Ag <C-R><C-W><CR>
 "" endfunction
 "" command! StripTrailingWhitespaces call<SID>StripTrailingWhitespaces()
 "" autocmd BufWritePre * call<SID>StripTrailingWhitespaces()
+"
 " DISABILITY_REASON: Use no write with root privileges
 """ Force override RO-files with W
 "" command W silent execute 'w !sudo tee % > /dev/null' | :e! | syn on
+"
 " DISABILITY_REASON: Use no automatic write (non proper file reload is in place)
 """ Save file on exit to normal mode
 "" augroup AUTOSAVE

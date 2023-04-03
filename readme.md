@@ -38,5 +38,3 @@ All deployed versions and old configurations are stored at `~/.vimmy`.
 |save on insert mode exit|
 |fix colorscheme for xterm appearance|
 |and so on.. for more info take a look at [vimrc](https://github.com/sfate/dotvimmy/blob/master/vimrc) file ;)|
-
-### Last Edit: 10/Mar/2023
