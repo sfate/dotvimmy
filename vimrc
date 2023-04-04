@@ -118,6 +118,10 @@ set listchars=tab:>-,trail:⋅,nbsp:⋅
 " Extremely fast timeout for escape codes
 set timeoutlen=1000 ttimeoutlen=0
 
+" Promote spacebar to Leader
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
 " Highlight search results
 set hlsearch
 set incsearch
@@ -163,8 +167,8 @@ inoremap <nowait> jk <Esc>
 nnoremap <Leader>w :w!<CR>
 nnoremap <silent> <Leader>q :q!<CR>
 
-" Center the screen
-nnoremap <Space> zz
+" " Center the screen
+" nnoremap <Space> zz
 
 " Do not show stupid q: window
 map q: <NOP>
@@ -381,7 +385,7 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 " Always obtains fresh directory listings
 let g:netrw_fastbrowse = 0
 " Open files in: 1 - hsplit, 2 - vsplit, 3 - newtab, 4 - prevwindow
-let g:netrw_browse_split = 3
+let g:netrw_browse_split = 4
 " Copy directories recursively by default
 let g:netrw_localcopydircmd = 'cp -r'
 " Sets the size of window/drawer
