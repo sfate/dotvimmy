@@ -33,7 +33,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/tComment'
 Plug 'dense-analysis/ale'
-Plug 'govim/govim'
+Plug 'fatih/vim-go'
 " Marks
 Plug 'kshenoy/vim-signature'
 " Search
@@ -173,6 +173,9 @@ nnoremap <silent> <Leader>q :q!<CR>
 " Do not show stupid q: window
 map q: <NOP>
 
+" Unfuck my screen
+nnoremap U :syntax sync fromstart<CR>:redraw!<CR>
+
 " Enable paste mode for pasting from outside
 " Do not use buggy pastetoggle
 function! s:TogglePaste()
@@ -283,6 +286,7 @@ let g:ale_lint_on_filetype_changed = 1
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
 let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_go_golangci_lint_package = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
@@ -351,6 +355,9 @@ let g:go_debug_windows = {
   \ 'stack': 'rightbelow 10new',
 \ }
 
+" Do NOT trigger gocode to build outdated packages (root cause of vim freeze for ~20s on go files save)
+let g:go_gocode_autobuild = 0
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fzf.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -385,7 +392,7 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 " Always obtains fresh directory listings
 let g:netrw_fastbrowse = 0
 " Open files in: 1 - hsplit, 2 - vsplit, 3 - newtab, 4 - prevwindow
-let g:netrw_browse_split = 4
+" let g:netrw_browse_split = 4
 " Copy directories recursively by default
 let g:netrw_localcopydircmd = 'cp -r'
 " Sets the size of window/drawer
