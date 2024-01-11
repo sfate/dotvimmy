@@ -220,6 +220,9 @@ command! NormalizeSplit call<SID>NormalizeSplit()
 autocmd BufRead,BufNewFile Gemfile*  set filetype=ruby
 autocmd BufRead,BufNewFile */nginx/* set filetype=nginx
 
+" Resize splits when the window is resized
+autocmd VimResized * :wincmd =
+
 " Source Vim configuration file and install plugins
 nnoremap <silent><Leader>1 :source ~/.vimrc \| :PlugInstall<CR>
 
