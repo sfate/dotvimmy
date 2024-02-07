@@ -143,8 +143,19 @@ set undodir=~/.vim/undo/
 " Disable complete to search through tags
 set complete-=t
 
+" Set n lines to the cursor - when moving vertically using j/k
+set scrolloff=5
+set sidescrolloff=15
+
+" Set proper non-annoying bells
+set noerrorbells
+set visualbell
+
+" Default 800ms is too slow
+set updatetime=100
+
 " Macros
-nnoremap Q @@
+map Q @@
 " set lazydraw
 
 " Disable proper keys
@@ -173,8 +184,12 @@ nnoremap <silent> <Leader>q :q!<CR>
 " Do not show stupid q: window
 map q: <NOP>
 
+" Do not show record macros on nav keys
+map qj <NOP>
+map qk <NOP>
+
 " Unfuck my screen
-nnoremap U :syntax sync fromstart<CR>:redraw!<CR>
+nnoremap <Leader>u :syntax sync fromstart<CR>:redraw!<CR>
 
 " Enable paste mode for pasting from outside
 " Do not use buggy pastetoggle
@@ -188,7 +203,7 @@ function! s:TogglePaste()
   endif
 endfunction
 
-map <leader>p :call<SID>TogglePaste()<CR>
+map <Leader>p :call<SID>TogglePaste()<CR>
 
 " Use colorshemes for tty and pty
 set noshowmode
@@ -225,6 +240,15 @@ autocmd VimResized * :wincmd =
 
 " Source Vim configuration file and install plugins
 nnoremap <silent><Leader>1 :source ~/.vimrc \| :PlugInstall<CR>
+
+" Use shortcut for useful go-doc info
+autocmd FileType go nnoremap <buffer> <Leader>k :GoDoc<CR>
+
+" Go to defintion on a split/vsplit/newtab
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-startify
@@ -374,7 +398,7 @@ nnoremap <Leader><CR>     :Buffers<CR>
 " Search file by name per repo
 nnoremap <Leader>t        :GFiles<CR>
 " Search file by name
-nnoremap <Leader><leader> :Files<CR>
+nnoremap <Leader><Leader> :Files<CR>
 " Show repo changes status
 nnoremap <Leader>s        :GFiles?<CR>
 " Search through project / current folder (pwd)
