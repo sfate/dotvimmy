@@ -33,7 +33,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/tComment'
 Plug 'dense-analysis/ale'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " Marks
 Plug 'kshenoy/vim-signature'
 " Search
@@ -125,13 +125,12 @@ let mapleader=" "
 " Highlight search results
 set hlsearch
 set incsearch
-nmap <Leader>/ :noh<CR>
 
 " Search down into subfolders. Provides tab-completion for all file-related tasks
 set path+=**
 
 " Highlihgt can be really slow. Limit it for performance reasons
-set synmaxcol=200
+set synmaxcol=350
 
 " Use old regular expression engine
 set re=0
@@ -170,9 +169,16 @@ nnoremap <Right> <NOP>
 nnoremap <Home>  <NOP>
 nnoremap <End>   <NOP>
 
-" jj & jk ESC
+" jj & jk && kk ESC
 inoremap <nowait> jj <Esc>
+inoremap <nowait> kk <Esc>
 inoremap <nowait> jk <Esc>
+
+" Go over long lines as multi-line
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 " Fast saving
 nnoremap <Leader>w :w!<CR>
@@ -190,6 +196,12 @@ map qk <NOP>
 
 " Unfuck my screen
 nnoremap <Leader>u :syntax sync fromstart<CR>:redraw!<CR>
+
+" Turn off hightligh
+nmap <Leader>/ :noh<CR>
+
+" Hightlight the word under cusror without cursor position change
+map <Leader>h :let @/ = '\<'.expand('<cword>').'\>'\|set hlsearch<C-M>
 
 " Enable paste mode for pasting from outside
 " Do not use buggy pastetoggle
@@ -385,9 +397,31 @@ let g:go_debug_windows = {
 " Do NOT trigger gocode to build outdated packages (root cause of vim freeze for ~20s on go files save)
 let g:go_gocode_autobuild = 0
 
+" run go imports on file save
+let g:go_fmt_command = "goimports"
+
+" automatically highlight variable your cursor is on (!buggy)
+let g:go_auto_sameids = 0
+
+" enable syntax highlighting
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fzf.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tell FZF to use RG - so we can skip .gitignore files even if not using
+" " :GitFiles search
+let $FZF_DEFAULT_COMMAND = 'ag --hidden'
+" " If you want gitignored files:
+" "let $FZF_DEFAULT_COMMAND = 'ag -u'
+
 command! -bang -nargs=* CustomBLines
     \ call fzf#vim#grep(
     \   'rg --with-filename --column --line-number --no-heading --smart-case . '.fnameescape(expand('%:p')), 1,
