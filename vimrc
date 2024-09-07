@@ -34,6 +34,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/tComment'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'vim-ruby/vim-ruby'
 " Marks
 Plug 'kshenoy/vim-signature'
 " Search
@@ -141,6 +142,8 @@ set undodir=~/.vim/undo/
 
 " Disable complete to search through tags
 set complete-=t
+" Disable complete to search through files (very slow)
+set complete-=i
 
 " Set n lines to the cursor - when moving vertically using j/k
 set scrolloff=5
@@ -438,7 +441,7 @@ command! -bang -nargs=* CustomBLines
     \   fzf#vim#with_preview({'options': '--layout reverse --query '.shellescape(<q-args>).' --with-nth=4.. --delimiter=":"'}, 'right:50%'))
 
 " List opened buffers per session
-nnoremap <Leader><CR>     :Buffers<CR>
+nnoremap <Leader>b     :Buffers<CR>
 " Search file by name per repo
 nnoremap <Leader>t        :GFiles<CR>
 " Search file by name
@@ -474,7 +477,7 @@ augroup netrw
   autocmd FileType netrw setlocal bufhidden=wipe
 augroup end
 " \n to explore (toggle)
-nnoremap <Leader>n :Lexplore<CR>
+" nnoremap <Leader>n :Lexplore<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
