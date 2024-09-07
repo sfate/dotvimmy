@@ -35,6 +35,8 @@ Plug 'vim-scripts/tComment'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'vim-ruby/vim-ruby'
+" AI
+Plug 'github/copilot.vim', { 'do': ':Copilot setup' }
 " Marks
 Plug 'kshenoy/vim-signature'
 " Search
@@ -127,6 +129,9 @@ let mapleader=" "
 set hlsearch
 set incsearch
 
+" Show search result counter
+set shortmess-=S
+
 " Search down into subfolders. Provides tab-completion for all file-related tasks
 set path+=**
 
@@ -135,6 +140,7 @@ set synmaxcol=350
 
 " Use old regular expression engine
 set re=0
+set rdt=0
 
 " Undo history
 set undofile
@@ -441,7 +447,7 @@ command! -bang -nargs=* CustomBLines
     \   fzf#vim#with_preview({'options': '--layout reverse --query '.shellescape(<q-args>).' --with-nth=4.. --delimiter=":"'}, 'right:50%'))
 
 " List opened buffers per session
-nnoremap <Leader>b     :Buffers<CR>
+nnoremap <Leader>b        :Buffers<CR>
 " Search file by name per repo
 nnoremap <Leader>t        :GFiles<CR>
 " Search file by name
@@ -478,6 +484,12 @@ augroup netrw
 augroup end
 " \n to explore (toggle)
 " nnoremap <Leader>n :Lexplore<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => copilot
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap <C-L> <Plug>(copilot-accept-line)
+nnoremap <Leader>l <Plug>(copilot-accept-line)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
