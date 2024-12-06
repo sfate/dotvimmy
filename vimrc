@@ -213,6 +213,9 @@ map q: <NOP>
 map qj <NOP>
 map qk <NOP>
 
+" Do not allow macros on q register
+map qq <nop>
+
 " Unfuck my screen
 nnoremap <Leader>u :syntax sync fromstart<CR>:redraw!<CR>
 
@@ -235,6 +238,10 @@ function! s:TogglePaste()
 endfunction
 
 map <Leader>p :call<SID>TogglePaste()<CR>
+
+" System buffer copy/paste
+vmap <Leader>y "+y
+nnoremap <Leader>p "+p
 
 " Use colorshemes for tty and pty
 set noshowmode
