@@ -493,12 +493,6 @@ augroup end
 " nnoremap <Leader>n :Lexplore<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => copilot
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-imap <C-L> <Plug>(copilot-accept-line)
-nnoremap <Leader>l <Plug>(copilot-accept-line)
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DISABLED!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DISABILITY_REASON: Use no automatic file change!
@@ -526,3 +520,8 @@ nnoremap <Leader>l <Plug>(copilot-accept-line)
 ""   au!
 ""   autocmd InsertLeave,TextChanged,FocusLost * if &readonly==0 && filereadable(bufname('%')) | silent :w | endif
 "" augroup END
+"
+" DISABILITY_REASON: Use no remappings for copilot
+""" Provided function does not work as expected
+"" imap <C-L> <Plug>(copilot-accept-line)
+"" nnoremap <Leader>l <Plug>(copilot-accept-line)
