@@ -10,7 +10,8 @@ All deployed versions and old configurations are stored at `~/.vimmy`.
 ### Plugins:
 * [VimPlug](https://github.com/junegunn/vim-plug)
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
-* [govim](https://github.com/govim/govim)
+* [fatih/vim-go](https://github.com/fatih/vim-go)
+* [vim-ruby/vim-ruby](https://github.com/vim-ruby/vim-ruby)
 * [tComment](https://github.com/vim-scripts/tComment)
 * [ale](https://github.com/dense-analysis/ale)
 * [rainbow](https://github.com/luochen1990/rainbow)
@@ -18,7 +19,6 @@ All deployed versions and old configurations are stored at `~/.vimmy`.
 * [fzf.vim](https://github.com/junegunn/fzf.vim)
 * [vim-startify](https://github.com/mhinz/vim-startify)
 * [lightline](https://github.com/itchyny/lightline.vim)
-* [vim-signature](https://github.com/kshenoy/vim-signature)
 * [vim-css-color](https://github.com/ap/vim-css-color)
 
 ### Colorscheme - [gruvbox](https://github.com/gruvbox-community/gruvbox)

@@ -453,6 +453,47 @@ command! -bang -nargs=* CustomBLines
     \   'rg --with-filename --column --line-number --no-heading --smart-case . '.fnameescape(expand('%:p')), 1,
     \   fzf#vim#with_preview({'options': '--layout reverse --query '.shellescape(<q-args>).' --with-nth=4.. --delimiter=":"'}, 'right:50%'))
 
+function! s:CustomMarks()
+  let marks = signature#mark#GetList('used', 'buff_all')
+  let entries = []
+
+  for mark in marks
+    let name = mark[0]
+    let lnum = mark[1]
+    let bufnr = mark[2]
+    let fname = bufname(bufnr)
+    if empty(fname)
+      let fname = '[No Name]'
+    endif
+    call add(entries, printf('%s:%d:%s', fname, lnum, name))
+  endfor
+
+  if empty(entries)
+    echo 'No marks found'
+    return
+  endif
+
+  call fzf#run(fzf#wrap({
+        \ 'source': entries,
+        \ 'sink*': function('s:JumpToMark'),
+        \ 'options': '-d ":" -n 2.. --ansi --preview-window ":+{2}+3/3" --preview "bat --color=always --highlight-line {2} {1}" --prompt="Marks> "'
+        \ }))
+endfunction
+command! CustomMarks call<SID>CustomMarks()
+
+function! s:JumpToMark(selected)
+  " Example format: /path/to/file:42:A
+  let parts = split(a:selected[0], ':')
+  if len(parts) < 2
+    echo 'Invalid selection'
+    return
+  endif
+  let fname = parts[0]
+  let lnum = parts[1]
+  execute 'edit ' fname
+  execute ': ' lnum
+endfunction
+
 " List opened buffers per session
 nnoremap <Leader>b        :Buffers<CR>
 " Search file by name per repo
@@ -464,6 +505,8 @@ nnoremap <Leader>s        :GFiles?<CR>
 " Search through project / current folder (pwd)
 nnoremap <Leader>f        :Ag<CR>
 nnoremap <Leader>*        :Ag <C-R><C-W><CR>
+" Search through marks
+nnoremap <Leader>m        :CustomMarks<CR>
 " Search through opened current buffer
 " Disabled: search nav is too clumsy
 " nnoremap /                :CustomBLines<CR>
